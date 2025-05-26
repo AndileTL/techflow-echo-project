@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import { 
   Users, 
   Network, 
@@ -15,42 +16,49 @@ import {
 const Services = () => {
   const services = [
     {
+      id: 'it-consultant',
       icon: Users,
       title: "IT Consultant",
       description: "Expert consulting services to guide your technology strategy and digital transformation journey.",
       features: ["Technology Strategy", "Digital Roadmap", "Process Optimization", "Risk Assessment"]
     },
     {
+      id: 'network-support',
       icon: Network,
       title: "Network Support",
       description: "Comprehensive network infrastructure design, implementation, and ongoing support services.",
       features: ["Network Design", "Security Implementation", "Performance Monitoring", "Troubleshooting"]
     },
     {
+      id: 'software-development',
       icon: Code,
       title: "Software Development",
       description: "Custom software solutions built with modern technologies to meet your specific business needs.",
       features: ["Web Applications", "Mobile Apps", "Custom Software", "API Development"]
     },
     {
+      id: 'cloud-support',
       icon: Cloud,
       title: "Cloud Support",
       description: "Cloud migration, optimization, and management services for scalable business operations.",
       features: ["Cloud Migration", "Infrastructure Management", "Cost Optimization", "Security & Compliance"]
     },
     {
+      id: 'digital-transformation',
       icon: Zap,
       title: "Digital Transformation",
       description: "Complete digital transformation services to modernize your business processes and technology.",
       features: ["Process Automation", "Legacy System Upgrade", "Digital Strategy", "Change Management"]
     },
     {
+      id: 'it-infrastructure',
       icon: Server,
       title: "IT Infrastructure",
       description: "Robust IT infrastructure solutions designed for reliability, scalability, and performance.",
       features: ["Server Management", "Data Center Solutions", "Backup & Recovery", "System Integration"]
     },
     {
+      id: 'it-support',
       icon: Headphones,
       title: "IT Support",
       description: "24/7 comprehensive IT support services to keep your systems running smoothly and efficiently.",
@@ -104,13 +112,15 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-                <Button 
-                  variant="outline" 
-                  className="w-full group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent transition-all duration-500 shadow-md hover:shadow-lg"
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={16} />
-                </Button>
+                <Link to={`/service/${service.id}`}>
+                  <Button 
+                    variant="outline" 
+                    className="w-full group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent transition-all duration-500 shadow-md hover:shadow-lg"
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={16} />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

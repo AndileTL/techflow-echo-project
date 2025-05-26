@@ -9,6 +9,9 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
+import ServiceDetail from "./components/ServiceDetail";
+import PortfolioDetail from "./components/PortfolioDetail";
+import TechFlowChatbot from "./components/TechFlowChatbot";
 
 const queryClient = new QueryClient();
 
@@ -23,9 +26,12 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/service/:serviceId" element={<ServiceDetail />} />
+          <Route path="/portfolio/:projectId" element={<PortfolioDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <TechFlowChatbot />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

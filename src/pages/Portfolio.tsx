@@ -2,12 +2,14 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ExternalLink, Code, Network, Cloud, Zap, Server, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Portfolio = () => {
   const projects = [
     {
+      id: 'erp-system',
       title: "Enterprise Resource Planning System",
       category: "Software Development",
       description: "Custom ERP solution for a leading manufacturing company with 500+ employees.",
@@ -16,6 +18,7 @@ const Portfolio = () => {
       icon: Code
     },
     {
+      id: 'cloud-migration',
       title: "Cloud Infrastructure Migration",
       category: "Cloud Solutions",
       description: "Complete migration of legacy systems to AWS cloud infrastructure for improved scalability.",
@@ -24,6 +27,7 @@ const Portfolio = () => {
       icon: Cloud
     },
     {
+      id: 'banking-security',
       title: "Banking Network Security Upgrade",
       category: "Network Support",
       description: "Enhanced security infrastructure for a major financial institution with 50+ branches.",
@@ -32,6 +36,7 @@ const Portfolio = () => {
       icon: Network
     },
     {
+      id: 'digital-transformation',
       title: "Digital Transformation Initiative",
       category: "Digital Transformation",
       description: "Complete digital overhaul for a retail chain, including POS systems and inventory management.",
@@ -40,6 +45,7 @@ const Portfolio = () => {
       icon: Zap
     },
     {
+      id: 'data-center',
       title: "Data Center Infrastructure",
       category: "IT Infrastructure",
       description: "Design and implementation of redundant data center infrastructure for 99.9% uptime.",
@@ -48,6 +54,7 @@ const Portfolio = () => {
       icon: Server
     },
     {
+      id: 'it-support-optimization',
       title: "IT Support Optimization",
       category: "IT Support",
       description: "Streamlined IT support processes for a 1000+ employee organization with 24/7 coverage.",
@@ -75,7 +82,7 @@ const Portfolio = () => {
             Our Portfolio
           </h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-            Discover how we've helped businesses across Zimbabwe transform their operations with innovative technology solutions.
+            Discover how we've helped businesses across Zimbabwe and internationally transform their operations with innovative technology solutions.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
@@ -134,10 +141,12 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <Button variant="outline" className="w-full group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent transition-all duration-500">
-                    View Details
-                    <ExternalLink className="ml-2" size={16} />
-                  </Button>
+                  <Link to={`/portfolio/${project.id}`}>
+                    <Button variant="outline" className="w-full group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent transition-all duration-500">
+                      View Details
+                      <ExternalLink className="ml-2" size={16} />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -153,7 +162,7 @@ const Portfolio = () => {
               Industries We Serve
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our expertise spans across multiple industries, delivering tailored solutions for unique business needs.
+              Our expertise spans across multiple industries, delivering tailored solutions for unique business needs globally.
             </p>
           </div>
 
@@ -192,12 +201,11 @@ const Portfolio = () => {
             Join hundreds of satisfied clients who have transformed their businesses with TechFlow Technologies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
-              Request Proposal
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600">
-              Schedule Consultation
-            </Button>
+            <a href="#contact">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
+                Contact Us Today
+              </Button>
+            </a>
           </div>
         </div>
       </section>

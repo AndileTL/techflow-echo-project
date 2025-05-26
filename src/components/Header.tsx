@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -75,9 +74,6 @@ const Header = () => {
                 </Link>
               )
             ))}
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300">
-              Get Quote
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -116,9 +112,6 @@ const Header = () => {
                   </Link>
                 )
               ))}
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 w-fit">
-                Get Quote
-              </Button>
             </div>
           </div>
         )}

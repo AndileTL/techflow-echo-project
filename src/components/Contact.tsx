@@ -64,7 +64,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["sales@techflow.co.zw"]
+      details: ["sales@techflow.co.zw", "support@techflow.co.zw"]
     },
     {
       icon: Clock,
@@ -89,9 +89,12 @@ const Contact = () => {
             <span className="text-purple-200 font-semibold">Get In Touch</span>
           </div>
           <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-4">
             Ready to transform your business with cutting-edge technology? 
             Let's discuss how we can help you achieve your goals.
+          </p>
+          <p className="text-lg text-purple-200 max-w-2xl mx-auto">
+            We proudly serve clients across Zimbabwe and internationally, providing world-class technology solutions globally.
           </p>
         </div>
 
