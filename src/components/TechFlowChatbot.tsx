@@ -236,7 +236,12 @@ const TechFlowChatbot = () => {
               <CardTitle className="flex items-center space-x-2 text-lg">
                 <Bot size={20} />
                 <span>TechFlow AI Assistant</span>
-                <Globe size={16} className="text-purple-200" title="Internet Connected" />
+                <div className="relative group">
+                  <Globe size={16} className="text-purple-200" />
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Internet Connected
+                  </div>
+                </div>
               </CardTitle>
               <Button
                 variant="ghost"
