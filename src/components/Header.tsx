@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,6 +10,7 @@ const Header = () => {
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
     { name: 'Portfolio', href: '/portfolio' },
+    { name: 'IT Helpdesk', href: '#it-helpdesk' },
     { name: 'Contact', href: '#contact' },
   ];
 
