@@ -12,7 +12,7 @@ import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 import ServiceDetail from "./components/ServiceDetail";
 import PortfolioDetail from "./components/PortfolioDetail";
-import TechFlowChatbot from "./components/TechFlowChatbot";
+
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <TechFlowChatbot />
+        
       </BrowserRouter>
       <Analytics />
     </TooltipProvider>
