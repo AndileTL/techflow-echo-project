@@ -1,8 +1,38 @@
 
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle, Zap, Cpu, Network, Sparkles } from 'lucide-react';
 
 const Hero = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const targetDate = new Date('2025-01-01T00:00:00').getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="home" className="relative bg-gradient-to-br from-red-900 via-green-900 to-red-800 text-white py-20 overflow-hidden">
       {/* Christmas animated background elements */}
@@ -34,11 +64,33 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Season's Greetings Banner */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm px-6 py-2 rounded-full border border-yellow-400/30">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm px-6 py-2 rounded-full border border-yellow-400/30 mb-4">
             <Sparkles className="text-yellow-400 animate-pulse" size={20} />
             <span className="text-yellow-300 font-semibold">🎄 Season's Greetings & Happy New Year 2025! 🎆</span>
             <Sparkles className="text-yellow-400 animate-pulse" size={20} />
           </div>
+          
+          {/* New Year Countdown */}
+          {(timeLeft.days > 0 || timeLeft.hours > 0 || timeLeft.minutes > 0 || timeLeft.seconds > 0) && (
+            <div className="bg-gradient-to-r from-red-600/30 to-green-600/30 backdrop-blur-sm rounded-2xl p-6 border border-yellow-400/20 max-w-2xl mx-auto">
+              <h3 className="text-lg font-semibold text-yellow-300 mb-4">🎆 Countdown to 2025 🎆</h3>
+              <div className="grid grid-cols-4 gap-4">
+                {[
+                  { label: 'Days', value: timeLeft.days },
+                  { label: 'Hours', value: timeLeft.hours },
+                  { label: 'Minutes', value: timeLeft.minutes },
+                  { label: 'Seconds', value: timeLeft.seconds }
+                ].map((item, index) => (
+                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                    <div className="text-3xl md:text-4xl font-bold text-white">
+                      {item.value.toString().padStart(2, '0')}
+                    </div>
+                    <div className="text-xs text-yellow-300 uppercase tracking-wider mt-1">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
