@@ -156,6 +156,27 @@ const ServiceDetail = () => {
         "Proactive issue resolution",
         "Cost-effective IT operations"
       ]
+    },
+    'starlink-installation': {
+      title: "Starlink Installation & Support",
+      description: "Professional Starlink satellite internet installation, setup, and ongoing technical support services for homes and businesses across Zimbabwe.",
+      image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&h=400&fit=crop",
+      features: [
+        "Professional Site Survey",
+        "Expert Hardware Installation",
+        "Optimal Dish Positioning",
+        "Network Configuration",
+        "Signal Optimization",
+        "Router Setup & Security",
+        "Speed Testing & Verification",
+        "24/7 Technical Support"
+      ],
+      benefits: [
+        "High-speed internet in remote areas",
+        "Reliable connectivity for businesses",
+        "Professional installation guarantee",
+        "Ongoing technical support"
+      ]
     }
   };
 
@@ -181,9 +202,9 @@ const ServiceDetail = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-br from-red-900 via-green-900 to-red-800 text-white">
         <div className="container mx-auto px-4">
-          <Link to="/services" className="inline-flex items-center text-purple-200 hover:text-white mb-6 transition-colors">
+          <Link to="/services" className="inline-flex items-center text-yellow-200 hover:text-white mb-6 transition-colors">
             <ArrowLeft size={20} className="mr-2" />
             Back to Services
           </Link>
@@ -195,15 +216,15 @@ const ServiceDetail = () => {
                 <h3 className="text-lg font-semibold mb-4">Contact Our Experts</h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <Phone size={18} className="text-purple-300" />
+                    <Phone size={18} className="text-yellow-300" />
                     <span>+2638677211025</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail size={18} className="text-purple-300" />
+                    <Mail size={18} className="text-yellow-300" />
                     <span>support@techflow.co.zw</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Globe size={18} className="text-purple-300" />
+                    <Globe size={18} className="text-yellow-300" />
                     <span>Serving clients globally</span>
                   </div>
                 </div>
@@ -227,7 +248,7 @@ const ServiceDetail = () => {
             {/* Features */}
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-purple-800">What We Offer</CardTitle>
+                <CardTitle className="text-2xl font-bold text-red-700">What We Offer</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
@@ -244,7 +265,7 @@ const ServiceDetail = () => {
             {/* Benefits */}
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-purple-800">Key Benefits</CardTitle>
+                <CardTitle className="text-2xl font-bold text-green-700">Key Benefits</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
@@ -262,20 +283,20 @@ const ServiceDetail = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-600 to-green-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-4">Ready to Get Started?</h3>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-yellow-100 mb-8 max-w-2xl mx-auto">
             Contact us today to discuss how our {service.title.toLowerCase()} services can benefit your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
+              <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
                 Contact Us Now
               </Button>
             </a>
             <a href="tel:+2638677211025">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
                 Call: +2638677211025
               </Button>
             </a>
