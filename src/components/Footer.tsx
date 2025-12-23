@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Sparkles } from 'lucide-react';
 
 const Footer = () => {
@@ -81,6 +82,7 @@ const Footer = () => {
               <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:translate-x-1 transform inline-block">Cloud Support</a></li>
               <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:translate-x-1 transform inline-block">Digital Transformation</a></li>
               <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:translate-x-1 transform inline-block">IT Support</a></li>
+              <li><Link to="/starlink" className="text-yellow-400 hover:text-yellow-300 transition-colors duration-300 hover:translate-x-1 transform inline-block font-semibold">🛰️ Starlink Installation</Link></li>
             </ul>
           </div>
 
