@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,28 +18,29 @@ const Contact = () => {
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      subject: formData.get('subject'),
-      message: formData.get('message'),
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string || null,
+      company: null,
+      service: formData.get('subject') as string || null,
+      message: formData.get('message') as string,
     };
 
     try {
-      // Simulate email sending - in a real app, this would be handled by a backend service
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      console.log('Form submission data:', data);
-      console.log('Email would be sent to: sales@techflow.co.zw');
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([data]);
+
+      if (error) throw error;
       
       toast({
         title: "Message Sent Successfully!",
         description: "We'll get back to you within 24 hours.",
       });
       
-      // Reset form
       (e.target as HTMLFormElement).reset();
     } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
