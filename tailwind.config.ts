@@ -18,7 +18,7 @@ export default {
 			}
 		},
 		extend: {
-			colors: {
+		colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -51,6 +51,16 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				whatsapp: {
+					DEFAULT: 'hsl(var(--whatsapp))',
+					dark: 'hsl(var(--whatsapp-dark))'
+				},
+				brand: {
+					blue: 'hsl(var(--brand-blue))',
+					teal: 'hsl(var(--brand-teal))',
+					amber: 'hsl(var(--brand-amber))',
+					navy: 'hsl(var(--brand-navy))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

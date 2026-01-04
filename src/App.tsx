@@ -17,6 +17,7 @@ import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import AdminThemes from "./pages/AdminThemes";
 import AdminContacts from "./pages/AdminContacts";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/admin/contacts" element={<AdminContacts />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppButton />
         </BrowserRouter>
         <Analytics />
       </TooltipProvider>
