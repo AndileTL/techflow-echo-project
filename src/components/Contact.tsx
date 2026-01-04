@@ -63,6 +63,12 @@ const Contact = () => {
       details: ["+2638677211025"]
     },
     {
+      icon: MessageSquare,
+      title: "WhatsApp",
+      details: ["0779822400"],
+      isWhatsApp: true
+    },
+    {
       icon: Mail,
       title: "Email Us",
       details: ["sales@techflow.co.zw", "support@techflow.co.zw"]
@@ -106,13 +112,17 @@ const Contact = () => {
               <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/15 transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className={`w-12 h-12 ${(info as any).isWhatsApp ? 'bg-gradient-to-r from-green-500 to-green-600' : 'bg-gradient-to-r from-purple-500 to-blue-500'} rounded-lg flex items-center justify-center flex-shrink-0`}>
                       <info.icon size={24} />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">{info.title}</h3>
                       {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-blue-100 text-sm">{detail}</p>
+                        (info as any).isWhatsApp ? (
+                          <a key={idx} href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-200 text-sm block">{detail}</a>
+                        ) : (
+                          <p key={idx} className="text-blue-100 text-sm">{detail}</p>
+                        )
                       ))}
                     </div>
                   </div>
