@@ -1,134 +1,72 @@
-
-import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Zap, Cpu, Network, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle, Zap, Cpu, Network, Rocket } from 'lucide-react';
 
 const Hero = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  useEffect(() => {
-    const targetDate = new Date('2025-01-01T00:00:00').getTime();
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000)
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section id="home" className="relative bg-gradient-to-br from-red-900 via-green-900 to-red-800 text-white py-20 overflow-hidden">
-      {/* Christmas animated background elements */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-green-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-yellow-400 rounded-full blur-2xl animate-pulse delay-500"></div>
-        <div className="absolute top-20 right-1/4 w-20 h-20 bg-yellow-300 rounded-full blur-2xl animate-pulse delay-700"></div>
+    <section id="home" className="relative bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white py-24 overflow-hidden">
+      {/* Modern animated background elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Snowflakes decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-white/20 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              fontSize: `${Math.random() * 20 + 10}px`,
-            }}
-          >
-            ❄
-          </div>
-        ))}
+      {/* Geometric pattern overlay */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Season's Greetings Banner */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm px-6 py-2 rounded-full border border-yellow-400/30 mb-4">
-            <Sparkles className="text-yellow-400 animate-pulse" size={20} />
-            <span className="text-yellow-300 font-semibold">🎄 Season's Greetings & Happy New Year 2025! 🎆</span>
-            <Sparkles className="text-yellow-400 animate-pulse" size={20} />
+        {/* 2026 Welcome Banner */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-lg">
+            <Rocket className="text-accent animate-bounce" size={22} />
+            <span className="text-lg font-semibold bg-gradient-to-r from-accent via-white to-secondary bg-clip-text text-transparent">
+              Welcome to 2026 — Let's Build Something Amazing!
+            </span>
+            <Rocket className="text-accent animate-bounce" size={22} />
           </div>
-          
-          {/* New Year Countdown */}
-          {(timeLeft.days > 0 || timeLeft.hours > 0 || timeLeft.minutes > 0 || timeLeft.seconds > 0) && (
-            <div className="bg-gradient-to-r from-red-600/30 to-green-600/30 backdrop-blur-sm rounded-2xl p-6 border border-yellow-400/20 max-w-2xl mx-auto">
-              <h3 className="text-lg font-semibold text-yellow-300 mb-4">🎆 Countdown to 2025 🎆</h3>
-              <div className="grid grid-cols-4 gap-4">
-                {[
-                  { label: 'Days', value: timeLeft.days },
-                  { label: 'Hours', value: timeLeft.hours },
-                  { label: 'Minutes', value: timeLeft.minutes },
-                  { label: 'Seconds', value: timeLeft.seconds }
-                ].map((item, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                    <div className="text-3xl md:text-4xl font-bold text-white">
-                      {item.value.toString().padStart(2, '0')}
-                    </div>
-                    <div className="text-xs text-yellow-300 uppercase tracking-wider mt-1">{item.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <div className="flex items-center space-x-2 text-green-300">
+            <div className="flex items-center space-x-2 text-secondary">
               <Zap className="animate-pulse" size={20} />
-              <span className="text-sm uppercase tracking-wider">Next-Gen Technology</span>
+              <span className="text-sm uppercase tracking-widest font-medium">Next-Gen Technology</span>
             </div>
             
-            <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
               Innovative Technology 
-              <span className="bg-gradient-to-r from-yellow-300 to-green-300 bg-clip-text text-transparent"> Solutions</span> 
-              for Your Business
+              <span className="bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent"> Solutions</span> 
+              <br />for Your Business
             </h1>
             
-            <p className="text-xl text-green-100 leading-relaxed">
+            <p className="text-xl text-white/80 leading-relaxed max-w-xl">
               We provide cutting-edge technology solutions to help your business grow, 
               streamline operations, and stay ahead of the competition in today's digital world.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-red-600 to-green-600 hover:from-red-700 hover:to-green-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 text-lg px-8"
               >
                 Get Started
-                <ArrowRight className="ml-2 animate-pulse" size={20} />
+                <ArrowRight className="ml-2" size={20} />
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-yellow-400 text-white hover:bg-yellow-400 hover:text-red-900 transition-all duration-300 backdrop-blur-sm"
+                className="border-2 border-white/30 text-white hover:bg-white hover:text-brand-navy transition-all duration-300 backdrop-blur-sm text-lg px-8"
               >
                 Learn More
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8">
+            <div className="grid grid-cols-2 gap-6 pt-8">
               {[
                 { icon: CheckCircle, text: "24/7 Support" },
                 { icon: Cpu, text: "Expert Team" },
@@ -136,20 +74,25 @@ const Hero = () => {
                 { icon: Zap, text: "Custom Solutions" }
               ].map((item, index) => (
                 <div key={index} className="flex items-center space-x-3 group">
-                  <item.icon className="text-yellow-400 group-hover:scale-110 transition-transform duration-300" size={20} />
-                  <span className="group-hover:text-yellow-200 transition-colors duration-300">{item.text}</span>
+                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                    <item.icon className="text-accent group-hover:scale-110 transition-transform duration-300" size={20} />
+                  </div>
+                  <span className="font-medium group-hover:text-accent transition-colors duration-300">{item.text}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-r from-red-600/80 to-green-600/80 rounded-2xl p-8 shadow-2xl backdrop-blur-sm border border-yellow-300/20 hover:shadow-yellow-500/25 transition-all duration-500">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 text-gray-800 shadow-inner">
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-red-600 to-green-600 bg-clip-text text-transparent">
+            {/* Decorative rings */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-xl"></div>
+            
+            <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-8 shadow-2xl backdrop-blur-md border border-white/20">
+              <div className="bg-white rounded-2xl p-8 text-foreground shadow-inner">
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   Why Choose TechFlow?
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {[
                     "Industry-leading expertise in technology solutions",
                     "Customized approach for every client's unique needs",
@@ -157,11 +100,27 @@ const Hero = () => {
                     "Competitive pricing with no hidden costs"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start space-x-3 group">
-                      <CheckCircle className="text-green-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
-                      <span className="group-hover:text-red-700 transition-colors duration-300">{item}</span>
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="text-white" size={14} />
+                      </div>
+                      <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item}</span>
                     </li>
                   ))}
                 </ul>
+                
+                {/* Stats row */}
+                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
+                  {[
+                    { value: "500+", label: "Clients" },
+                    { value: "99%", label: "Uptime" },
+                    { value: "24/7", label: "Support" }
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{stat.value}</div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
