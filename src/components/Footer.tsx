@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Sparkles } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Sparkles, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,7 +19,7 @@ const Footer = () => {
           <div className="inline-flex items-center space-x-3">
             <Sparkles className="text-yellow-400 animate-pulse" size={24} />
             <span className="text-2xl font-bold bg-gradient-to-r from-yellow-300 via-red-300 to-green-300 bg-clip-text text-transparent">
-              🎄 Wishing You a Joyful Holiday Season & Prosperous New Year 2025! 🎆
+              🎄 Wishing You a Joyful Holiday Season & Prosperous New Year 2026! 🎆
             </span>
             <Sparkles className="text-yellow-400 animate-pulse" size={24} />
           </div>
@@ -102,6 +101,10 @@ const Footer = () => {
                 <Phone className="text-green-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-gray-300 group-hover:text-white transition-colors duration-300">+2638677211025</span>
               </div>
+              <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group">
+                <MessageCircle className="text-green-500 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
+                <span className="text-gray-300 group-hover:text-white transition-colors duration-300">WhatsApp: 0779822400</span>
+              </a>
               <div className="flex items-center space-x-3 group">
                 <Mail className="text-yellow-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-gray-300 group-hover:text-white transition-colors duration-300">sales@techflow.co.zw</span>

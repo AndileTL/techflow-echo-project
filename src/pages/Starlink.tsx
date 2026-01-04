@@ -9,7 +9,7 @@ const Starlink = () => {
   const pricingPackages = [
     {
       name: "Residential Basic",
-      price: "$150",
+      price: "$80",
       description: "Perfect for home users",
       features: [
         "Site survey & assessment",
@@ -23,7 +23,7 @@ const Starlink = () => {
     },
     {
       name: "Residential Premium",
-      price: "$250",
+      price: "$120",
       description: "Enhanced home connectivity",
       features: [
         "Comprehensive site survey",
@@ -39,7 +39,7 @@ const Starlink = () => {
     },
     {
       name: "Business",
-      price: "$400",
+      price: "$150",
       description: "For businesses & enterprises",
       features: [
         "Full site assessment",
@@ -165,7 +165,7 @@ const Starlink = () => {
               />
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-green-500 rounded-xl p-4 shadow-xl">
                 <p className="text-black font-bold text-lg">Starting from</p>
-                <p className="text-3xl font-bold text-black">$150</p>
+                <p className="text-3xl font-bold text-black">$80</p>
               </div>
             </div>
           </div>
