@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -13,6 +12,7 @@ import {
   Satellite,
   ArrowRight 
 } from 'lucide-react';
+import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
 const Services = () => {
   const services = [
@@ -84,57 +84,61 @@ const Services = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-4 py-2 rounded-full mb-4 border border-primary/20">
-            <Zap className="text-primary" size={20} />
-            <span className="text-foreground font-semibold">Our Services</span>
+        <ScrollAnimation>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-4 py-2 rounded-full mb-4 border border-primary/20">
+              <Zap className="text-primary" size={20} />
+              <span className="text-foreground font-semibold">Our Services</span>
+            </div>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">
+              Comprehensive Technology Solutions
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              We offer complete technology solutions to help your business thrive in the digital age. 
+              From consulting to implementation, we've got you covered.
+            </p>
           </div>
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">
-            Comprehensive Technology Solutions
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We offer complete technology solutions to help your business thrive in the digital age. 
-            From consulting to implementation, we've got you covered.
-          </p>
-        </div>
+        </ScrollAnimation>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.08}>
           {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 bg-card/80 backdrop-blur-sm border-border hover:border-primary/50">
-              <CardHeader className="pb-3">
-                <div className="w-14 h-14 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary group-hover:to-secondary transition-all duration-500 shadow-lg">
-                  <service.icon className="text-primary group-hover:text-primary-foreground transition-colors duration-500 group-hover:scale-110" size={28} />
-                </div>
-                <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </CardTitle>
-                <CardDescription className="text-muted-foreground text-sm">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <ul className="space-y-1.5 mb-4">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-secondary rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link to={`/service/${service.id}`}>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-500 shadow-md hover:shadow-lg"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={14} />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+            <StaggerItem key={index}>
+              <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 bg-card/80 backdrop-blur-sm border-border hover:border-primary/50 h-full">
+                <CardHeader className="pb-3">
+                  <div className="w-14 h-14 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary group-hover:to-secondary transition-all duration-500 shadow-lg">
+                    <service.icon className="text-primary group-hover:text-primary-foreground transition-colors duration-500 group-hover:scale-110" size={28} />
+                  </div>
+                  <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground text-sm">
+                    {service.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <ul className="space-y-1.5 mb-4">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-primary to-secondary rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to={`/service/${service.id}`}>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-500 shadow-md hover:shadow-lg"
+                    >
+                      Learn More
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={14} />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
