@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,62 +82,66 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-800 text-white relative overflow-hidden">
+    <section id="contact" className="py-20 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-blue-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-indigo-400 rounded-full blur-2xl animate-pulse delay-500"></div>
+        <div className="absolute top-10 left-10 w-40 h-40 bg-primary rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-48 h-48 bg-secondary rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-accent rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
-            <MessageSquare className="text-purple-300" size={20} />
-            <span className="text-purple-200 font-semibold">Get In Touch</span>
+        <ScrollAnimation>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-white/20">
+              <MessageSquare className="text-secondary" size={20} />
+              <span className="text-white/90 font-semibold">Get In Touch</span>
+            </div>
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-secondary to-accent bg-clip-text text-transparent">Contact Us</h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-4">
+              Ready to transform your business with cutting-edge technology? 
+              Let's discuss how we can help you achieve your goals.
+            </p>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              We proudly serve clients across Zimbabwe and internationally, providing world-class technology solutions globally.
+            </p>
           </div>
-          <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-4">
-            Ready to transform your business with cutting-edge technology? 
-            Let's discuss how we can help you achieve your goals.
-          </p>
-          <p className="text-lg text-purple-200 max-w-2xl mx-auto">
-            We proudly serve clients across Zimbabwe and internationally, providing world-class technology solutions globally.
-          </p>
-        </div>
+        </ScrollAnimation>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Information */}
-          <div className="lg:col-span-1 space-y-6">
+          <StaggerContainer className="lg:col-span-1 space-y-6" staggerDelay={0.1}>
             {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/15 transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 ${(info as any).isWhatsApp ? 'bg-gradient-to-r from-green-500 to-green-600' : 'bg-gradient-to-r from-purple-500 to-blue-500'} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                      <info.icon size={24} />
+              <StaggerItem key={index}>
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/15 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className={`w-12 h-12 ${(info as any).isWhatsApp ? 'bg-gradient-to-r from-whatsapp to-whatsapp-dark' : 'bg-gradient-to-r from-primary to-secondary'} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                        <info.icon size={24} />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-2">{info.title}</h3>
+                        {info.details.map((detail, idx) => (
+                          (info as any).isWhatsApp ? (
+                            <a key={idx} href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="text-whatsapp hover:text-whatsapp/80 text-sm block">{detail}</a>
+                          ) : (
+                            <p key={idx} className="text-white/70 text-sm">{detail}</p>
+                          )
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">{info.title}</h3>
-                      {info.details.map((detail, idx) => (
-                        (info as any).isWhatsApp ? (
-                          <a key={idx} href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-200 text-sm block">{detail}</a>
-                        ) : (
-                          <p key={idx} className="text-blue-100 text-sm">{detail}</p>
-                        )
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <ScrollAnimation direction="right" delay={0.2} className="lg:col-span-2">
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-white flex items-center space-x-2">
-                  <Send className="text-purple-300" />
+                  <Send className="text-secondary" />
                   <span>Send us a Message</span>
                 </CardTitle>
               </CardHeader>
@@ -149,7 +154,7 @@ const Contact = () => {
                         id="name"
                         name="name"
                         required
-                        className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:border-purple-400"
+                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
                         placeholder="Your full name"
                       />
                     </div>
@@ -160,7 +165,7 @@ const Contact = () => {
                         name="email"
                         type="email"
                         required
-                        className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:border-purple-400"
+                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
                         placeholder="your.email@company.com"
                       />
                     </div>
@@ -173,7 +178,7 @@ const Contact = () => {
                         id="phone"
                         name="phone"
                         type="tel"
-                        className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:border-purple-400"
+                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
                         placeholder="+263 xxx xxx xxx"
                       />
                     </div>
@@ -183,7 +188,7 @@ const Contact = () => {
                         id="subject"
                         name="subject"
                         required
-                        className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:border-purple-400"
+                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
                         placeholder="How can we help you?"
                       />
                     </div>
@@ -196,7 +201,7 @@ const Contact = () => {
                       name="message"
                       required
                       rows={5}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-gray-300 focus:border-purple-400 resize-none"
+                      className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary resize-none"
                       placeholder="Tell us about your project or requirements..."
                     />
                   </div>
@@ -204,7 +209,7 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold py-3 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
@@ -221,7 +226,7 @@ const Contact = () => {
                 </form>
               </CardContent>
             </Card>
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
     </section>

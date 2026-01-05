@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Sparkles, MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,14 +9,32 @@ const Footer = () => {
     <footer className="bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white relative overflow-hidden">
       {/* Background decoration with 2026 theme */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-20 w-32 h-32 bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-secondary rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-accent rounded-full blur-2xl"></div>
+        <motion.div 
+          className="absolute top-10 left-20 w-32 h-32 bg-primary rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-20 w-40 h-40 bg-secondary rounded-full blur-3xl"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+        />
+        <motion.div 
+          className="absolute top-1/2 left-1/2 w-24 h-24 bg-accent rounded-full blur-2xl"
+          animate={{ scale: [1, 1.3, 1] }}
+          transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+        />
       </div>
       
       <div className="container mx-auto px-4 py-12 relative z-10">
         {/* 2026 greeting banner */}
-        <div className="text-center mb-8 pb-8 border-b border-white/20">
+        <motion.div 
+          className="text-center mb-8 pb-8 border-b border-white/20"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-flex items-center space-x-3">
             <Sparkles className="text-accent animate-pulse" size={24} />
             <span className="text-2xl font-bold bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
@@ -23,11 +42,17 @@ const Footer = () => {
             </span>
             <Sparkles className="text-accent animate-pulse" size={24} />
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="flex items-center space-x-3">
               <img 
                 src="/lovable-uploads/981d3653-41bf-4379-847b-f87f6bf2e468.png" 
@@ -43,74 +68,103 @@ const Footer = () => {
               We transform businesses through cutting-edge digital solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white/60 hover:text-primary transition-colors duration-300 transform hover:scale-110">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-white/60 hover:text-primary transition-colors duration-300 transform hover:scale-110">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-white/60 hover:text-primary transition-colors duration-300 transform hover:scale-110">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-white/60 hover:text-primary transition-colors duration-300 transform hover:scale-110">
-                <Instagram size={20} />
-              </a>
+              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
+                <motion.a 
+                  key={index}
+                  href="#" 
+                  className="text-white/60 hover:text-primary transition-colors duration-300"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Icon size={20} />
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <h4 className="text-lg font-semibold text-accent">Quick Links</h4>
             <ul className="space-y-2">
-              <li><a href="#home" className="text-white/80 hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block">Home</a></li>
-              <li><a href="#services" className="text-white/80 hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block">Services</a></li>
-              <li><a href="#about" className="text-white/80 hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block">About</a></li>
-              <li><a href="#contact" className="text-white/80 hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block">Contact</a></li>
-              <li><a href="#" className="text-white/80 hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block">Portfolio</a></li>
-              <li><a href="#" className="text-white/80 hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block">Blog</a></li>
+              {['Home', 'Services', 'About', 'Contact', 'Portfolio', 'Blog'].map((link, index) => (
+                <motion.li key={index} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+                  <a href={`#${link.toLowerCase()}`} className="text-white/80 hover:text-primary transition-colors duration-300">
+                    {link}
+                  </a>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Services */}
-          <div className="space-y-4">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h4 className="text-lg font-semibold text-accent">Our Services</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block">IT Consultant</a></li>
-              <li><a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block">Network Support</a></li>
-              <li><a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block">Software Development</a></li>
-              <li><a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block">Cloud Support</a></li>
-              <li><a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block">Digital Transformation</a></li>
-              <li><a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block">IT Support</a></li>
-              <li><Link to="/starlink" className="text-accent hover:text-accent/80 transition-colors duration-300 hover:translate-x-1 transform inline-block font-semibold">🛰️ Starlink Installation</Link></li>
+              {['IT Consultant', 'Network Support', 'Software Development', 'Cloud Support', 'Digital Transformation', 'IT Support'].map((service, index) => (
+                <motion.li key={index} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+                  <a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300">
+                    {service}
+                  </a>
+                </motion.li>
+              ))}
+              <motion.li whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+                <Link to="/starlink" className="text-accent hover:text-accent/80 transition-colors duration-300 font-semibold">
+                  🛰️ Starlink Installation
+                </Link>
+              </motion.li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div className="space-y-4">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <h4 className="text-lg font-semibold text-accent">Contact Info</h4>
             <div className="space-y-3">
-              <div className="flex items-start space-x-3 group">
+              <motion.div className="flex items-start space-x-3 group" whileHover={{ x: 3 }}>
                 <MapPin className="text-primary mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-white/80 group-hover:text-white transition-colors duration-300">
                   26 Dieppe Avenue,<br />
                   New Cranborne Park,<br />
                   Harare, Zimbabwe
                 </span>
-              </div>
-              <div className="flex items-center space-x-3 group">
+              </motion.div>
+              <motion.div className="flex items-center space-x-3 group" whileHover={{ x: 3 }}>
                 <Phone className="text-secondary flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-white/80 group-hover:text-white transition-colors duration-300">+2638677211025</span>
-              </div>
-              <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group">
+              </motion.div>
+              <motion.a 
+                href="https://wa.me/263779822400" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center space-x-3 group"
+                whileHover={{ x: 3 }}
+              >
                 <MessageCircle className="text-whatsapp flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-white/80 group-hover:text-white transition-colors duration-300">WhatsApp: 0779822400</span>
-              </a>
-              <div className="flex items-center space-x-3 group">
+              </motion.a>
+              <motion.div className="flex items-center space-x-3 group" whileHover={{ x: 3 }}>
                 <Mail className="text-accent flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-white/80 group-hover:text-white transition-colors duration-300">sales@techflow.co.zw</span>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
