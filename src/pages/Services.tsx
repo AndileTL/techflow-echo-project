@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -20,15 +21,97 @@ import {
   Award,
   Phone,
   Mail,
-  Satellite
+  Satellite,
+  Loader2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Services = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    service: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          company: formData.company.trim() || null,
+          service: formData.service || null,
+          message: formData.message.trim(),
+          phone: null
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: "Request Submitted!",
+        description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const services = [
     {
       id: 'it-consultant',
@@ -140,6 +223,15 @@ const Services = () => {
     }
   ];
 
+  const clientLogos = [
+    { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/512px-Microsoft_logo.svg.png" },
+    { name: "Dell", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Dell_Logo.svg/512px-Dell_Logo.svg.png" },
+    { name: "Cisco", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/512px-Cisco_logo_blue_2016.svg.png" },
+    { name: "HP", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/480px-HP_logo_2012.svg.png" },
+    { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png" },
+    { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/512px-Google_Cloud_logo.svg.png" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -188,6 +280,7 @@ const Services = () => {
               <Button 
                 size="lg" 
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                onClick={() => document.getElementById('consultation-form')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Schedule Consultation
                 <ArrowRight className="ml-2" size={20} />
@@ -196,8 +289,9 @@ const Services = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 font-semibold px-8 py-6 text-lg transition-all duration-300"
+                asChild
               >
-                View Our Work
+                <Link to="/portfolio">View Our Work</Link>
               </Button>
             </div>
           </motion.div>
@@ -226,6 +320,49 @@ const Services = () => {
                 <div className="text-muted-foreground font-medium">{stat.label}</div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos Section */}
+      <section className="py-16 bg-background border-b border-border">
+        <div className="container mx-auto px-4">
+          <ScrollAnimation>
+            <div className="text-center mb-12">
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                Trusted Technology Partners
+              </h3>
+              <p className="text-lg text-foreground">
+                We partner with industry-leading technology providers
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="relative overflow-hidden">
+            {/* Gradient overlays for smooth edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
+            
+            {/* Scrolling logos */}
+            <motion.div
+              animate={{ x: [0, -1200] }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              className="flex items-center gap-16"
+            >
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 h-12 w-32 flex items-center justify-center grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                >
+                  <img 
+                    src={client.logo} 
+                    alt={client.name}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -363,7 +500,7 @@ const Services = () => {
       </section>
 
       {/* CTA / Contact Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 relative overflow-hidden">
+      <section id="consultation-form" className="py-20 lg:py-28 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 relative overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0">
           <motion.div
@@ -432,27 +569,35 @@ const Services = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-white/90 mb-2">
-                          Full Name
+                          Full Name <span className="text-accent">*</span>
                         </label>
                         <Input 
                           id="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
                           placeholder="John Doe" 
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-accent focus:ring-accent"
+                          required
+                          maxLength={100}
                         />
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">
-                          Email Address
+                          Email Address <span className="text-accent">*</span>
                         </label>
                         <Input 
                           id="email"
                           type="email" 
+                          value={formData.email}
+                          onChange={handleInputChange}
                           placeholder="john@company.com" 
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-accent focus:ring-accent"
+                          required
+                          maxLength={255}
                         />
                       </div>
                     </div>
@@ -462,8 +607,11 @@ const Services = () => {
                       </label>
                       <Input 
                         id="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
                         placeholder="Your Company" 
                         className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-accent focus:ring-accent"
+                        maxLength={100}
                       />
                     </div>
                     <div>
@@ -472,11 +620,13 @@ const Services = () => {
                       </label>
                       <select 
                         id="service"
+                        value={formData.service}
+                        onChange={handleInputChange}
                         className="w-full h-10 px-3 rounded-md bg-white/10 border border-white/20 text-white focus:border-accent focus:ring-accent focus:outline-none [&>option]:bg-background [&>option]:text-foreground"
                       >
                         <option value="">Select a service</option>
                         {services.map((service) => (
-                          <option key={service.id} value={service.id}>
+                          <option key={service.id} value={service.title}>
                             {service.title}
                           </option>
                         ))}
@@ -484,22 +634,36 @@ const Services = () => {
                     </div>
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-white/90 mb-2">
-                        Your Message
+                        Your Message <span className="text-accent">*</span>
                       </label>
                       <Textarea 
                         id="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
                         placeholder="Tell us about your project or requirements..." 
                         rows={4}
                         className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-accent focus:ring-accent resize-none"
+                        required
+                        maxLength={1000}
                       />
                     </div>
                     <Button 
                       type="submit"
                       size="lg"
-                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      disabled={isSubmitting}
+                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                     >
-                      Request Free Consultation
-                      <ArrowRight className="ml-2" size={20} />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 animate-spin" size={20} />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          Request Free Consultation
+                          <ArrowRight className="ml-2" size={20} />
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
