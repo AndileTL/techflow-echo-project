@@ -10,7 +10,10 @@ import {
   Server,
   Headphones,
   Satellite,
-  ArrowRight 
+  ArrowRight,
+  Wifi,
+  Phone,
+  Settings
 } from 'lucide-react';
 import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
@@ -22,6 +25,13 @@ const Services = () => {
       title: "IT Consultant",
       description: "Expert consulting services to guide your technology strategy and digital transformation journey.",
       features: ["Technology Strategy", "Digital Roadmap", "Process Optimization", "Risk Assessment"]
+    },
+    {
+      id: 'managed-it-services',
+      icon: Settings,
+      title: "Managed IT Services",
+      description: "Proactive end-to-end management of your IT environment so you can focus on your business.",
+      features: ["Monitoring & Maintenance", "Patch Management", "Helpdesk", "Vendor Management"]
     },
     {
       id: 'network-support',
@@ -40,9 +50,23 @@ const Services = () => {
     {
       id: 'cloud-support',
       icon: Cloud,
-      title: "Cloud Support",
-      description: "Cloud migration, optimization, and management services for scalable business operations.",
-      features: ["Cloud Migration", "Infrastructure Management", "Cost Optimization", "Security & Compliance"]
+      title: "Cloud & Microsoft 365",
+      description: "Cloud migration, Microsoft 365 deployment and ongoing management for modern productivity.",
+      features: ["Microsoft 365 Setup", "Cloud Migration", "Email & Teams", "Security & Compliance"]
+    },
+    {
+      id: 'voip-solutions',
+      icon: Phone,
+      title: "VoIP Solutions",
+      description: "Modern business voice solutions with crystal-clear calling, conferencing and PBX integration.",
+      features: ["Hosted PBX", "SIP Trunking", "Conferencing", "Call Analytics"]
+    },
+    {
+      id: 'isp-reseller',
+      icon: Wifi,
+      title: "ISP Reseller & Redundancy",
+      description: "Authorised reseller of Liquid Home, TelOne, Telco and Dark Fiber Africa with Starlink redundancy.",
+      features: ["Liquid Home", "TelOne", "Telco", "Dark Fiber Africa", "Starlink Failover"]
     },
     {
       id: 'digital-transformation',

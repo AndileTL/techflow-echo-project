@@ -31,6 +31,69 @@ const ServiceDetail = () => {
         "Risk mitigation and compliance assurance"
       ]
     },
+    'managed-it-services': {
+      title: "Managed IT Services",
+      description: "Proactive end-to-end management of your IT environment. We become your outsourced IT department with predictable monthly pricing.",
+      image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=400&fit=crop",
+      features: [
+        "24/7 Proactive Monitoring",
+        "Patch & Update Management",
+        "Helpdesk & End-User Support",
+        "Backup & Disaster Recovery",
+        "Endpoint Security Management",
+        "Asset & Inventory Tracking",
+        "Vendor & License Management",
+        "Strategic IT Reporting"
+      ],
+      benefits: [
+        "Predictable monthly IT costs",
+        "Fewer outages and faster resolution",
+        "Stronger security posture",
+        "Free your team to focus on the business"
+      ]
+    },
+    'voip-solutions': {
+      title: "VoIP Solutions",
+      description: "Modern business voice solutions with crystal-clear calling, conferencing and seamless integration with Microsoft Teams or your existing PBX.",
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop",
+      features: [
+        "Hosted PBX",
+        "SIP Trunking",
+        "Microsoft Teams Calling",
+        "Audio & Video Conferencing",
+        "Call Recording",
+        "IVR & Auto Attendants",
+        "Mobile & Softphone Apps",
+        "Detailed Call Analytics"
+      ],
+      benefits: [
+        "Significantly lower call costs",
+        "Work from anywhere with one number",
+        "Professional caller experience",
+        "Scales easily with your team"
+      ]
+    },
+    'isp-reseller': {
+      title: "ISP Reseller & Internet Redundancy",
+      description: "Authorised reseller of leading Zimbabwean ISPs — Liquid Home, TelOne, Telco and Dark Fiber Africa — with Starlink as automatic redundancy for guaranteed uptime.",
+      image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=800&h=400&fit=crop",
+      features: [
+        "Liquid Home Fibre",
+        "TelOne Broadband",
+        "Telco Connectivity",
+        "Dark Fiber Africa",
+        "Starlink Satellite Failover",
+        "Automatic Failover Routing",
+        "Single Monthly Invoice",
+        "End-to-End Support"
+      ],
+      benefits: [
+        "Always online with multi-ISP redundancy",
+        "One trusted partner for all connectivity",
+        "Optimised cost vs performance",
+        "Local support when you need it"
+      ]
+    },
     'network-support': {
       title: "Network Support",
       description: "Comprehensive network infrastructure design, implementation, and ongoing support services to ensure reliable and secure connectivity.",
@@ -74,24 +137,24 @@ const ServiceDetail = () => {
       ]
     },
     'cloud-support': {
-      title: "Cloud Support",
-      description: "Cloud migration, optimization, and management services for scalable business operations with enhanced security and cost efficiency.",
+      title: "Cloud & Microsoft 365",
+      description: "Cloud migration, Microsoft 365 deployment and ongoing management — productivity, security and collaboration in one place.",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=400&fit=crop",
       features: [
+        "Microsoft 365 Licensing & Setup",
+        "Email, Teams & SharePoint",
+        "OneDrive & SharePoint Migration",
         "Cloud Migration Strategy",
-        "Infrastructure Management",
-        "Cost Optimization",
-        "Security & Compliance",
+        "Identity & Access Management",
+        "Security & Compliance Baselines",
         "Backup & Disaster Recovery",
-        "Performance Monitoring",
-        "Multi-Cloud Management",
-        "DevOps Implementation"
+        "End-User Training"
       ],
       benefits: [
-        "Reduced IT infrastructure costs",
-        "Enhanced scalability and flexibility",
-        "Improved data security and compliance",
-        "Increased business agility"
+        "Modern productivity from anywhere",
+        "Stronger security and compliance",
+        "Predictable per-user pricing",
+        "One vendor for productivity and cloud"
       ]
     },
     'digital-transformation': {
@@ -202,29 +265,29 @@ const ServiceDetail = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-red-900 via-green-900 to-red-800 text-white">
+      <section className="py-20 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white">
         <div className="container mx-auto px-4">
-          <Link to="/services" className="inline-flex items-center text-yellow-200 hover:text-white mb-6 transition-colors">
+          <Link to="/services" className="inline-flex items-center text-accent hover:text-white mb-6 transition-colors">
             <ArrowLeft size={20} className="mr-2" />
             Back to Services
           </Link>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl font-bold mb-6">{service.title}</h1>
-              <p className="text-xl text-blue-100 mb-8">{service.description}</p>
+              <p className="text-xl text-white/80 mb-8">{service.description}</p>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-4">Contact Our Experts</h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <Phone size={18} className="text-yellow-300" />
+                    <Phone size={18} className="text-accent" />
                     <span>+2638677211025</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail size={18} className="text-yellow-300" />
+                    <Mail size={18} className="text-accent" />
                     <span>support@techflow.co.zw</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Globe size={18} className="text-yellow-300" />
+                    <Globe size={18} className="text-accent" />
                     <span>Serving clients globally</span>
                   </div>
                 </div>
@@ -248,14 +311,14 @@ const ServiceDetail = () => {
             {/* Features */}
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-red-700">What We Offer</CardTitle>
+                <CardTitle className="text-2xl font-bold text-primary">What We Offer</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   {service.features.map((feature, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <Check className="text-green-500 mt-1 flex-shrink-0" size={18} />
-                      <span className="text-gray-700">{feature}</span>
+                      <Check className="text-secondary mt-1 flex-shrink-0" size={18} />
+                      <span className="text-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -265,14 +328,14 @@ const ServiceDetail = () => {
             {/* Benefits */}
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-green-700">Key Benefits</CardTitle>
+                <CardTitle className="text-2xl font-bold text-secondary">Key Benefits</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   {service.benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <Check className="text-blue-500 mt-1 flex-shrink-0" size={18} />
-                      <span className="text-gray-700">{benefit}</span>
+                      <Check className="text-primary mt-1 flex-shrink-0" size={18} />
+                      <span className="text-foreground">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -283,20 +346,20 @@ const ServiceDetail = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-green-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary via-secondary to-accent text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-4">Ready to Get Started?</h3>
-          <p className="text-xl text-yellow-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Contact us today to discuss how our {service.title.toLowerCase()} services can benefit your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact">
-              <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
+              <Button size="lg" className="bg-background text-primary hover:bg-background/90">
                 Contact Us Now
               </Button>
             </a>
             <a href="tel:+2638677211025">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
+              <Button size="lg" variant="outline" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                 Call: +2638677211025
               </Button>
             </a>

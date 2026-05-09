@@ -112,7 +112,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-accent">Our Services</h4>
             <ul className="space-y-2">
-              {['IT Consultant', 'Network Support', 'Software Development', 'Cloud Support', 'Digital Transformation', 'IT Support'].map((service, index) => (
+              {['IT Consultant', 'Managed IT Services', 'Network Support', 'Software Development', 'Cloud & Microsoft 365', 'VoIP Solutions', 'ISP Reseller & Redundancy', 'Digital Transformation', 'IT Support'].map((service, index) => (
                 <motion.li key={index} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
                   <a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300">
                     {service}
