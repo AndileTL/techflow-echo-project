@@ -22,7 +22,9 @@ import {
   Phone,
   Mail,
   Satellite,
-  Loader2
+  Loader2,
+  Wifi,
+  Settings
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
@@ -124,6 +126,16 @@ const Services = () => {
       color: "from-primary to-secondary"
     },
     {
+      id: 'managed-it-services',
+      icon: Settings,
+      title: "Managed IT Services",
+      description: "Proactive end-to-end management of your IT environment so you can focus on running your business.",
+      image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=300&fit=crop",
+      features: ["24/7 Monitoring", "Patch & Update Management", "Helpdesk Support", "Vendor Management"],
+      details: "We become your outsourced IT department — monitoring, maintaining and optimising every layer of your technology stack with predictable monthly pricing.",
+      color: "from-secondary to-primary"
+    },
+    {
       id: 'network-support',
       icon: Network,
       title: "Network Support",
@@ -146,12 +158,32 @@ const Services = () => {
     {
       id: 'cloud-support',
       icon: Cloud,
-      title: "Cloud Support",
-      description: "Cloud migration, optimization, and management services for scalable business operations.",
+      title: "Cloud & Microsoft 365",
+      description: "Cloud migration, Microsoft 365 deployment and ongoing management for modern productivity.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop",
-      features: ["Cloud Migration", "Infrastructure Management", "Cost Optimization", "Security & Compliance"],
-      details: "Transform your business with cloud computing solutions that provide flexibility, scalability, and cost-effectiveness.",
+      features: ["Microsoft 365 Setup", "Cloud Migration", "Email, Teams & SharePoint", "Security & Compliance"],
+      details: "From licensing and migration to security baselines and end-user training, we deliver a complete Microsoft 365 and cloud experience tailored to your business.",
       color: "from-primary to-accent"
+    },
+    {
+      id: 'voip-solutions',
+      icon: Phone,
+      title: "VoIP Solutions",
+      description: "Modern business voice solutions with crystal-clear calling, conferencing and PBX integration.",
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop",
+      features: ["Hosted PBX", "SIP Trunking", "Audio & Video Conferencing", "Call Analytics & Recording"],
+      details: "Cut telephony costs and modernise communication with reliable, scalable VoIP — fully integrated with Microsoft Teams or your existing PBX.",
+      color: "from-accent to-secondary"
+    },
+    {
+      id: 'isp-reseller',
+      icon: Wifi,
+      title: "ISP Reseller & Internet Redundancy",
+      description: "Authorised reseller of leading Zimbabwean ISPs with Starlink redundancy for guaranteed uptime.",
+      image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=400&h=300&fit=crop",
+      features: ["Liquid Home", "TelOne", "Telco", "Dark Fiber Africa", "Starlink Failover & Redundancy"],
+      details: "Stay online, always. We provision and manage internet from Liquid Home, TelOne, Telco and Dark Fiber Africa, with Starlink as automatic redundancy.",
+      color: "from-primary to-secondary"
     },
     {
       id: 'digital-transformation',
@@ -224,12 +256,12 @@ const Services = () => {
   ];
 
   const clientLogos = [
-    { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/512px-Microsoft_logo.svg.png" },
-    { name: "Dell", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Dell_Logo.svg/512px-Dell_Logo.svg.png" },
-    { name: "Cisco", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/512px-Cisco_logo_blue_2016.svg.png" },
-    { name: "HP", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/480px-HP_logo_2012.svg.png" },
-    { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png" },
-    { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/512px-Google_Cloud_logo.svg.png" }
+    { name: "Starlink", tagline: "Satellite Internet" },
+    { name: "Liquid Home", tagline: "Fibre Internet" },
+    { name: "TelOne", tagline: "National ISP" },
+    { name: "Telco", tagline: "Connectivity" },
+    { name: "Dark Fiber Africa", tagline: "Fibre Backbone" },
+    { name: "Microsoft 365", tagline: "Productivity Cloud" },
   ];
 
   return (
@@ -339,27 +371,25 @@ const Services = () => {
           </ScrollAnimation>
 
           <div className="relative overflow-hidden">
-            {/* Gradient overlays for smooth edges */}
             <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
-            
-            {/* Scrolling logos */}
+
             <motion.div
               animate={{ x: [0, -1200] }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="flex items-center gap-16"
+              className="flex items-center gap-8"
             >
               {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 h-12 w-32 flex items-center justify-center grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                  className="flex-shrink-0 px-6 py-4 min-w-[200px] rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-lg transition-all duration-300 text-center"
                 >
-                  <img 
-                    src={client.logo} 
-                    alt={client.name}
-                    className="max-h-full max-w-full object-contain"
-                    loading="lazy"
-                  />
+                  <div className="font-bold text-foreground bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent text-lg">
+                    {client.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
+                    {client.tagline}
+                  </div>
                 </div>
               ))}
             </motion.div>
