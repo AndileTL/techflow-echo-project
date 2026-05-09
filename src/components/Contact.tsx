@@ -56,7 +56,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Our Office",
-      details: ["26 Dieppe Avenue", "New Cranborne Park", "Harare, Zimbabwe"]
+      details: ["13 Audley Street", "Carneborne Park", "Harare, Zimbabwe"]
     },
     {
       icon: Phone,
@@ -65,9 +65,16 @@ const Contact = () => {
     },
     {
       icon: MessageSquare,
-      title: "WhatsApp",
-      details: ["0779822400"],
+      title: "WhatsApp Sales",
+      details: ["0779 822 400"],
       isWhatsApp: true
+    },
+    {
+      icon: MessageSquare,
+      title: "WhatsApp ISP",
+      details: ["0772 800 790"],
+      isWhatsApp: true,
+      whatsappNumber: "263772800790"
     },
     {
       icon: Mail,
@@ -123,7 +130,7 @@ const Contact = () => {
                         <h3 className="font-semibold mb-2">{info.title}</h3>
                         {info.details.map((detail, idx) => (
                           (info as any).isWhatsApp ? (
-                            <a key={idx} href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="text-whatsapp hover:text-whatsapp/80 text-sm block">{detail}</a>
+                            <a key={idx} href={`https://wa.me/${(info as any).whatsappNumber || '263779822400'}`} target="_blank" rel="noopener noreferrer" className="text-whatsapp hover:text-whatsapp/80 text-sm block">{detail}</a>
                           ) : (
                             <p key={idx} className="text-white/70 text-sm">{detail}</p>
                           )
