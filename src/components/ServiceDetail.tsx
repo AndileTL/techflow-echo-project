@@ -202,29 +202,29 @@ const ServiceDetail = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-red-900 via-green-900 to-red-800 text-white">
+      <section className="py-20 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white">
         <div className="container mx-auto px-4">
-          <Link to="/services" className="inline-flex items-center text-yellow-200 hover:text-white mb-6 transition-colors">
+          <Link to="/services" className="inline-flex items-center text-accent hover:text-white mb-6 transition-colors">
             <ArrowLeft size={20} className="mr-2" />
             Back to Services
           </Link>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl font-bold mb-6">{service.title}</h1>
-              <p className="text-xl text-blue-100 mb-8">{service.description}</p>
+              <p className="text-xl text-white/80 mb-8">{service.description}</p>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-4">Contact Our Experts</h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <Phone size={18} className="text-yellow-300" />
+                    <Phone size={18} className="text-accent" />
                     <span>+2638677211025</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail size={18} className="text-yellow-300" />
+                    <Mail size={18} className="text-accent" />
                     <span>support@techflow.co.zw</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Globe size={18} className="text-yellow-300" />
+                    <Globe size={18} className="text-accent" />
                     <span>Serving clients globally</span>
                   </div>
                 </div>
@@ -248,14 +248,14 @@ const ServiceDetail = () => {
             {/* Features */}
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-red-700">What We Offer</CardTitle>
+                <CardTitle className="text-2xl font-bold text-primary">What We Offer</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   {service.features.map((feature, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <Check className="text-green-500 mt-1 flex-shrink-0" size={18} />
-                      <span className="text-gray-700">{feature}</span>
+                      <Check className="text-secondary mt-1 flex-shrink-0" size={18} />
+                      <span className="text-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -265,14 +265,14 @@ const ServiceDetail = () => {
             {/* Benefits */}
             <Card className="h-fit">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-green-700">Key Benefits</CardTitle>
+                <CardTitle className="text-2xl font-bold text-secondary">Key Benefits</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   {service.benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <Check className="text-blue-500 mt-1 flex-shrink-0" size={18} />
-                      <span className="text-gray-700">{benefit}</span>
+                      <Check className="text-primary mt-1 flex-shrink-0" size={18} />
+                      <span className="text-foreground">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -283,20 +283,20 @@ const ServiceDetail = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-green-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary via-secondary to-accent text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-4">Ready to Get Started?</h3>
-          <p className="text-xl text-yellow-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Contact us today to discuss how our {service.title.toLowerCase()} services can benefit your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact">
-              <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
+              <Button size="lg" className="bg-background text-primary hover:bg-background/90">
                 Contact Us Now
               </Button>
             </a>
             <a href="tel:+2638677211025">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
+              <Button size="lg" variant="outline" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                 Call: +2638677211025
               </Button>
             </a>
