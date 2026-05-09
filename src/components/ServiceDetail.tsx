@@ -31,6 +31,69 @@ const ServiceDetail = () => {
         "Risk mitigation and compliance assurance"
       ]
     },
+    'managed-it-services': {
+      title: "Managed IT Services",
+      description: "Proactive end-to-end management of your IT environment. We become your outsourced IT department with predictable monthly pricing.",
+      image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=400&fit=crop",
+      features: [
+        "24/7 Proactive Monitoring",
+        "Patch & Update Management",
+        "Helpdesk & End-User Support",
+        "Backup & Disaster Recovery",
+        "Endpoint Security Management",
+        "Asset & Inventory Tracking",
+        "Vendor & License Management",
+        "Strategic IT Reporting"
+      ],
+      benefits: [
+        "Predictable monthly IT costs",
+        "Fewer outages and faster resolution",
+        "Stronger security posture",
+        "Free your team to focus on the business"
+      ]
+    },
+    'voip-solutions': {
+      title: "VoIP Solutions",
+      description: "Modern business voice solutions with crystal-clear calling, conferencing and seamless integration with Microsoft Teams or your existing PBX.",
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop",
+      features: [
+        "Hosted PBX",
+        "SIP Trunking",
+        "Microsoft Teams Calling",
+        "Audio & Video Conferencing",
+        "Call Recording",
+        "IVR & Auto Attendants",
+        "Mobile & Softphone Apps",
+        "Detailed Call Analytics"
+      ],
+      benefits: [
+        "Significantly lower call costs",
+        "Work from anywhere with one number",
+        "Professional caller experience",
+        "Scales easily with your team"
+      ]
+    },
+    'isp-reseller': {
+      title: "ISP Reseller & Internet Redundancy",
+      description: "Authorised reseller of leading Zimbabwean ISPs — Liquid Home, TelOne, Telco and Dark Fiber Africa — with Starlink as automatic redundancy for guaranteed uptime.",
+      image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=800&h=400&fit=crop",
+      features: [
+        "Liquid Home Fibre",
+        "TelOne Broadband",
+        "Telco Connectivity",
+        "Dark Fiber Africa",
+        "Starlink Satellite Failover",
+        "Automatic Failover Routing",
+        "Single Monthly Invoice",
+        "End-to-End Support"
+      ],
+      benefits: [
+        "Always online with multi-ISP redundancy",
+        "One trusted partner for all connectivity",
+        "Optimised cost vs performance",
+        "Local support when you need it"
+      ]
+    },
     'network-support': {
       title: "Network Support",
       description: "Comprehensive network infrastructure design, implementation, and ongoing support services to ensure reliable and secure connectivity.",
@@ -74,24 +137,24 @@ const ServiceDetail = () => {
       ]
     },
     'cloud-support': {
-      title: "Cloud Support",
-      description: "Cloud migration, optimization, and management services for scalable business operations with enhanced security and cost efficiency.",
+      title: "Cloud & Microsoft 365",
+      description: "Cloud migration, Microsoft 365 deployment and ongoing management — productivity, security and collaboration in one place.",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=400&fit=crop",
       features: [
+        "Microsoft 365 Licensing & Setup",
+        "Email, Teams & SharePoint",
+        "OneDrive & SharePoint Migration",
         "Cloud Migration Strategy",
-        "Infrastructure Management",
-        "Cost Optimization",
-        "Security & Compliance",
+        "Identity & Access Management",
+        "Security & Compliance Baselines",
         "Backup & Disaster Recovery",
-        "Performance Monitoring",
-        "Multi-Cloud Management",
-        "DevOps Implementation"
+        "End-User Training"
       ],
       benefits: [
-        "Reduced IT infrastructure costs",
-        "Enhanced scalability and flexibility",
-        "Improved data security and compliance",
-        "Increased business agility"
+        "Modern productivity from anywhere",
+        "Stronger security and compliance",
+        "Predictable per-user pricing",
+        "One vendor for productivity and cloud"
       ]
     },
     'digital-transformation': {
