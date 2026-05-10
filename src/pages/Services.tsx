@@ -397,6 +397,88 @@ const Services = () => {
         </div>
       </section>
 
+      {/* ISP Reseller & Redundancy Teaser */}
+      <section className="py-20 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 right-10 w-72 h-72 bg-accent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <ScrollAnimation direction="left">
+              <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-white/20">
+                <Wifi className="text-accent" size={20} />
+                <span className="text-white/90 font-medium">ISP Reseller & Redundancy</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                We Resell the Following ISPs
+                <span className="block bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent">
+                  with Starlink Failover
+                </span>
+              </h2>
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">
+                Stay online, always. We resell Liquid Home, TelOne, Telco and Dark Fiber Africa, and pair any of them with Starlink as automatic redundancy.
+              </p>
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {["Liquid Home", "TelOne", "Telco", "Dark Fiber Africa"].map((isp) => (
+                  <div key={isp} className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
+                    <CheckCircle className="text-accent mr-2 flex-shrink-0" size={18} />
+                    <span className="font-medium">{isp}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold" asChild>
+                  <Link to="/isp-reseller">
+                    Learn More
+                    <ArrowRight className="ml-2" size={18} />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="border-2 border-white/30 bg-white/10 text-white hover:bg-white/20" asChild>
+                  <a href="https://wa.me/263772800790" target="_blank" rel="noopener noreferrer">
+                    WhatsApp 0772 800 790
+                  </a>
+                </Button>
+              </div>
+            </ScrollAnimation>
+
+            <ScrollAnimation direction="right">
+              <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-2xl">
+                <CardContent className="p-8 space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-white/10 rounded-xl">
+                    <div className="flex items-center">
+                      <Wifi className="text-accent mr-3" size={24} />
+                      <div>
+                        <div className="font-semibold text-white">Primary ISP</div>
+                        <div className="text-xs text-white/70">Liquid / TelOne / DFA / Telco</div>
+                      </div>
+                    </div>
+                    <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">Active</span>
+                  </div>
+                  <div className="flex justify-center">
+                    <Zap className="text-accent animate-pulse" size={32} />
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-white/10 rounded-xl">
+                    <div className="flex items-center">
+                      <Satellite className="text-accent mr-3" size={24} />
+                      <div>
+                        <div className="font-semibold text-white">Starlink</div>
+                        <div className="text-xs text-white/70">Automatic Failover</div>
+                      </div>
+                    </div>
+                    <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Standby</span>
+                  </div>
+                  <div className="pt-4 border-t border-white/20 flex items-center text-sm text-white/80">
+                    <Shield className="text-accent mr-2 flex-shrink-0" size={18} />
+                    Smart router keeps you online when fibre fails.
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
       <section className="py-20 lg:py-28 bg-gradient-to-br from-background via-primary/5 to-secondary/5 relative overflow-hidden">
         {/* Background decoration */}
