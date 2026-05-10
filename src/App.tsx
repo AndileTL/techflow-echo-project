@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import ServiceDetail from "./components/ServiceDetail";
 import PortfolioDetail from "./components/PortfolioDetail";
 import Starlink from "./pages/Starlink";
+import IspReseller from "./pages/IspReseller";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import AdminThemes from "./pages/AdminThemes";
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/service/:serviceId" element={<ServiceDetail />} />
             <Route path="/starlink" element={<Starlink />} />
+            <Route path="/isp-reseller" element={<IspReseller />} />
             <Route path="/portfolio/:projectId" element={<PortfolioDetail />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />

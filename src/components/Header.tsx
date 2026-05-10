@@ -1,9 +1,23 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, Mail, MessageCircle, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+
+  const serviceLinks = [
+    { name: 'Managed IT Services', href: '/service/managed-it-services' },
+    { name: 'Cloud & Microsoft 365', href: '/service/cloud-support' },
+    { name: 'VoIP Solutions', href: '/service/voip-solutions' },
+    { name: 'ISP Reseller & Redundancy', href: '/isp-reseller' },
+    { name: 'Network Support', href: '/service/network-support' },
+    { name: 'Software Development', href: '/service/software-development' },
+    { name: 'IT Support', href: '/service/it-support' },
+    { name: 'Starlink Installation', href: '/starlink' },
+    { name: 'View All Services', href: '/services' },
+  ];
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -56,8 +70,43 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              item.href.startsWith('#') ? (
+            {navItems.map((item) => {
+              if (item.name === 'Services') {
+                return (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <Link
+                      to={item.href}
+                      className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group flex items-center gap-1"
+                    >
+                      {item.name}
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300 rounded-full"></span>
+                    </Link>
+                    {isServicesOpen && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 z-50">
+                        <div className="bg-background border border-border rounded-xl shadow-2xl overflow-hidden">
+                          {serviceLinks.map((s) => (
+                            <Link
+                              key={s.href}
+                              to={s.href}
+                              className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 hover:text-primary transition-colors duration-200 border-b border-border last:border-0"
+                              onClick={() => setIsServicesOpen(false)}
+                            >
+                              {s.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return item.href.startsWith('#') ? (
                 <a
                   key={item.name}
                   href={item.href}
@@ -75,8 +124,8 @@ const Header = () => {
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </Link>
-              )
-            ))}
+              );
+            })}
             <Link
               to="/starlink"
               className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105"
@@ -100,8 +149,38 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in border-t border-border pt-4">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                item.href.startsWith('#') ? (
+              {navItems.map((item) => {
+                if (item.name === 'Services') {
+                  return (
+                    <div key={item.name} className="flex flex-col">
+                      <button
+                        onClick={() => setIsMobileServicesOpen((v) => !v)}
+                        className="flex items-center justify-between text-muted-foreground hover:text-primary font-medium py-2"
+                      >
+                        <span>Services</span>
+                        <ChevronDown size={16} className={`transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isMobileServicesOpen && (
+                        <div className="pl-4 mt-1 flex flex-col space-y-2 border-l-2 border-primary/30">
+                          {serviceLinks.map((s) => (
+                            <Link
+                              key={s.href}
+                              to={s.href}
+                              className="text-sm text-muted-foreground hover:text-primary py-1"
+                              onClick={() => {
+                                setIsMenuOpen(false);
+                                setIsMobileServicesOpen(false);
+                              }}
+                            >
+                              {s.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                return item.href.startsWith('#') ? (
                   <a
                     key={item.name}
                     href={item.href}
@@ -119,8 +198,8 @@ const Header = () => {
                   >
                     {item.name}
                   </Link>
-                )
-              ))}
+                );
+              })}
               <Link
                 to="/starlink"
                 className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg font-medium text-center"
