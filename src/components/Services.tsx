@@ -65,7 +65,7 @@ const Services = () => {
       id: 'isp-reseller',
       icon: Wifi,
       title: "ISP Reseller & Redundancy",
-      description: "Authorised reseller of Liquid Home, TelOne, Telco and Dark Fiber Africa with Starlink redundancy.",
+      description: "We resell the following ISPs — Liquid Home, TelOne, Telco and Dark Fiber Africa — with Starlink as automatic failover for guaranteed uptime.",
       features: ["Liquid Home", "TelOne", "Telco", "Dark Fiber Africa", "Starlink Failover"]
     },
     {

@@ -75,7 +75,7 @@ const ServiceDetail = () => {
     },
     'isp-reseller': {
       title: "ISP Reseller & Internet Redundancy",
-      description: "Authorised reseller of leading Zimbabwean ISPs — Liquid Home, TelOne, Telco and Dark Fiber Africa — with Starlink as automatic redundancy for guaranteed uptime.",
+      description: "We resell the following ISPs — Liquid Home, TelOne, Telco and Dark Fiber Africa — with Starlink as automatic failover for guaranteed uptime.",
       image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=800&h=400&fit=crop",
       features: [
         "Liquid Home Fibre",

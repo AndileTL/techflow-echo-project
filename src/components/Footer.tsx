@@ -140,8 +140,8 @@ const Footer = () => {
               <motion.div className="flex items-start space-x-3 group" whileHover={{ x: 3 }}>
                 <MapPin className="text-primary mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
                 <span className="text-white/80 group-hover:text-white transition-colors duration-300">
-                  26 Dieppe Avenue,<br />
-                  New Cranborne Park,<br />
+                  13 Audley Street,<br />
+                  Carneborne Park,<br />
                   Harare, Zimbabwe
                 </span>
               </motion.div>

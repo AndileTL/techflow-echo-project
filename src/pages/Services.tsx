@@ -179,10 +179,10 @@ const Services = () => {
       id: 'isp-reseller',
       icon: Wifi,
       title: "ISP Reseller & Internet Redundancy",
-      description: "Authorised reseller of leading Zimbabwean ISPs with Starlink redundancy for guaranteed uptime.",
+      description: "We resell the following ISPs with Starlink as automatic failover for guaranteed uptime.",
       image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=400&h=300&fit=crop",
       features: ["Liquid Home", "TelOne", "Telco", "Dark Fiber Africa", "Starlink Failover & Redundancy"],
-      details: "Stay online, always. We provision and manage internet from Liquid Home, TelOne, Telco and Dark Fiber Africa, with Starlink as automatic redundancy.",
+      details: "Stay online, always. We resell the following — Liquid Home, TelOne, Telco and Dark Fiber Africa — and pair them with Starlink as automatic redundancy.",
       color: "from-primary to-secondary"
     },
     {
