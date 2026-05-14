@@ -83,9 +83,9 @@ const IspReseller = () => {
                 ISP Reseller & Internet Redundancy
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.15]">
               Always Online with
-              <span className="block bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent pb-2">
                 Multi-ISP Redundancy
               </span>
             </h1>
@@ -317,7 +317,7 @@ const IspReseller = () => {
             <Card className="bg-gradient-to-br from-brand-navy via-primary to-secondary text-white border-0 shadow-2xl overflow-hidden relative">
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
               <CardContent className="p-8 md:p-12 relative z-10">
-                <div className="grid lg:grid-cols-3 gap-8 items-center">
+                <div className="grid lg:grid-cols-3 gap-8 lg:items-center">
                   <div className="lg:col-span-2">
                     <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 border border-accent/30">
                       <Star className="text-accent fill-accent" size={16} />
@@ -347,7 +347,7 @@ const IspReseller = () => {
                       ))}
                     </ul>
                   </div>
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 w-full">
                     <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-xl">
                       <Link to="/service/managed-it-services">
                         Explore Managed IT
