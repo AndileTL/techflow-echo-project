@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail, MessageCircle, ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Menu, X, Phone, Mail, MessageCircle, ChevronDown, ArrowRight } from 'lucide-react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const location = useLocation();
+  const isServicesActive =
+    location.pathname === '/services' ||
+    location.pathname.startsWith('/service/') ||
+    location.pathname === '/isp-reseller' ||
+    location.pathname === '/starlink';
 
   const serviceLinks = [
     { name: 'Managed IT Services', href: '/service/managed-it-services' },
@@ -24,7 +30,7 @@ const Header = () => {
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
     { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -81,11 +87,11 @@ const Header = () => {
                   >
                     <Link
                       to={item.href}
-                      className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group flex items-center gap-1"
+                      className={`font-medium transition-all duration-300 relative group flex items-center gap-1 ${isServicesActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
                     >
                       {item.name}
                       <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300 rounded-full"></span>
+                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 rounded-full ${isServicesActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                     </Link>
                     {isServicesOpen && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 z-50">
@@ -106,7 +112,7 @@ const Header = () => {
                   </div>
                 );
               }
-              return item.href.startsWith('#') ? (
+              return item.href.startsWith('/#') ? (
                 <a
                   key={item.name}
                   href={item.href}
@@ -116,21 +122,29 @@ const Header = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </a>
               ) : (
-                <Link
+                <NavLink
                   key={item.name}
                   to={item.href}
-                  className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group"
+                  end
+                  className={({ isActive }) =>
+                    `font-medium transition-all duration-300 relative group ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`
+                  }
                 >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300 rounded-full"></span>
-                </Link>
+                  {({ isActive }) => (
+                    <>
+                      {item.name}
+                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 rounded-full ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    </>
+                  )}
+                </NavLink>
               );
             })}
             <Link
-              to="/starlink"
-              className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105"
+              to="/services#consultation-form"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary via-secondary to-accent text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              Starlink
+              Get a Quote
+              <ArrowRight size={16} />
             </Link>
           </div>
 
