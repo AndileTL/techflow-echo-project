@@ -37,8 +37,8 @@ const Footer = () => {
         >
           <div className="inline-flex items-center space-x-3">
             <Sparkles className="text-accent animate-pulse" size={24} />
-            <span className="text-2xl font-bold bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
-              Welcome to 2026 — Innovating Together!
+            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
+              May 2026 — Innovating Together
             </span>
             <Sparkles className="text-accent animate-pulse" size={24} />
           </div>
