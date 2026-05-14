@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, Award, Clock, Target, Zap, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
 const About = () => {
@@ -91,11 +92,11 @@ const About = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
-                  Get In Touch
+                <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                  <a href="#contact">Get In Touch</a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-                  View Portfolio
+                <Button asChild size="lg" variant="outline" className="border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                  <Link to="/portfolio">View Portfolio</Link>
                 </Button>
               </div>
             </div>
@@ -162,18 +163,11 @@ const About = () => {
                 Let's discuss how our technology solutions can help you achieve your goals and drive your business forward.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-background text-primary hover:bg-background/90 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Start Your Project
+                <Button asChild size="lg" className="bg-background text-primary hover:bg-background/90 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Link to="/services#consultation-form">Start Your Project</Link>
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-300"
-                >
-                  Schedule Consultation
+                <Button asChild size="lg" variant="outline" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-300">
+                  <a href="#contact">Schedule Consultation</a>
                 </Button>
               </div>
             </CardContent>
