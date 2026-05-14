@@ -81,9 +81,11 @@ const Hero = () => {
               <span className="text-sm uppercase tracking-widest font-medium">Next-Gen Technology</span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] tracking-tight">
               Smarter IT.
-              <span className="block bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">Always Online.</span>
+              <span className="block bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent pb-1">
+                Always Online.
+              </span>
               Built for Zimbabwe.
             </motion.h1>
             
