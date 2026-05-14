@@ -92,11 +92,18 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-accent">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'Services', 'About', 'Contact', 'Portfolio', 'Blog'].map((link, index) => (
+              {[
+                { label: 'Home', to: '/' },
+                { label: 'Services', to: '/services' },
+                { label: 'About', to: '/about' },
+                { label: 'Portfolio', to: '/portfolio' },
+                { label: 'ISP Reseller', to: '/isp-reseller' },
+                { label: 'Starlink', to: '/starlink' },
+              ].map((link, index) => (
                 <motion.li key={index} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                  <a href={`#${link.toLowerCase()}`} className="text-white/80 hover:text-primary transition-colors duration-300">
-                    {link}
-                  </a>
+                  <Link to={link.to} className="text-white/80 hover:text-primary transition-colors duration-300">
+                    {link.label}
+                  </Link>
                 </motion.li>
               ))}
             </ul>
