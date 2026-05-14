@@ -62,8 +62,8 @@ const Hero = () => {
         >
           <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-lg">
             <Rocket className="text-accent animate-bounce" size={22} />
-            <span className="text-lg font-semibold bg-gradient-to-r from-accent via-white to-secondary bg-clip-text text-transparent">
-              Welcome to 2026 — Let's Build Something Amazing!
+            <span className="text-base md:text-lg font-semibold bg-gradient-to-r from-accent via-white to-secondary bg-clip-text text-transparent">
+              May 2026 — A Fresh Look, Same Trusted Partner
             </span>
             <Rocket className="text-accent animate-bounce" size={22} />
           </div>
@@ -81,15 +81,16 @@ const Hero = () => {
               <span className="text-sm uppercase tracking-widest font-medium">Next-Gen Technology</span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-5xl lg:text-7xl font-bold leading-tight">
-              Innovative Technology 
-              <span className="bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent"> Solutions</span> 
-              <br />for Your Business
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
+              Smarter IT.
+              <span className="block bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">Always Online.</span>
+              Built for Zimbabwe.
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-xl text-white/80 leading-relaxed max-w-xl">
-              We provide cutting-edge technology solutions to help your business grow, 
-              streamline operations, and stay ahead of the competition in today's digital world.
+            <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl">
+              Managed IT, Cloud & Microsoft 365, VoIP, and multi-ISP connectivity
+              with Starlink failover — fully managed by TechFlow so your team can
+              focus on what matters.
             </motion.p>
             
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 pt-4">

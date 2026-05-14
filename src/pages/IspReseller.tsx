@@ -11,6 +11,9 @@ import {
   ArrowRight,
   Phone,
   MessageCircle,
+  Star,
+  Headphones,
+  Settings,
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -252,6 +255,116 @@ const IspReseller = () => {
               </Card>
             </ScrollAnimation>
           </div>
+        </div>
+      </section>
+
+      {/* Fully Managed Service */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <ScrollAnimation>
+            <div className="text-center mb-12 max-w-3xl mx-auto">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-4 py-2 rounded-full mb-4 border border-primary/20">
+                <Settings className="text-primary" size={20} />
+                <span className="text-foreground font-semibold">Fully Managed on Your Behalf</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  We Manage the Whole Stack — You Just Use the Internet
+                </span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                From provisioning and installation to monitoring, billing, and
+                troubleshooting — TechFlow handles every ISP relationship,
+                router, and failover rule on your behalf.
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <StaggerContainer className="grid md:grid-cols-3 gap-6 mb-12" staggerDelay={0.1}>
+            {[
+              {
+                icon: Settings,
+                title: 'Provision & Install',
+                desc: 'We negotiate with each ISP, install the lines, configure routers, and get you online quickly.',
+              },
+              {
+                icon: Shield,
+                title: '24/7 Monitoring',
+                desc: 'Our NOC watches every link in real time and reacts before you notice an issue.',
+              },
+              {
+                icon: Headphones,
+                title: 'One Point of Contact',
+                desc: 'Forget juggling 4 ISPs. Call TechFlow — we deal with Liquid, TelOne, Telco, and DFA for you.',
+              },
+            ].map((item) => (
+              <StaggerItem key={item.title}>
+                <Card className="h-full bg-card/80 backdrop-blur-sm border-border hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
+                      <item.icon className="text-white" size={22} />
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          {/* Star Package */}
+          <ScrollAnimation>
+            <Card className="bg-gradient-to-br from-brand-navy via-primary to-secondary text-white border-0 shadow-2xl overflow-hidden relative">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
+              <CardContent className="p-8 md:p-12 relative z-10">
+                <div className="grid lg:grid-cols-3 gap-8 items-center">
+                  <div className="lg:col-span-2">
+                    <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4 border border-accent/30">
+                      <Star className="text-accent fill-accent" size={16} />
+                      <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Star Package</span>
+                    </div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                      IT Managed Services — Outsource Your Entire IT Department
+                    </h3>
+                    <p className="text-white/85 text-lg mb-6 leading-relaxed">
+                      Hand over your IT to TechFlow. We become your IT department:
+                      connectivity, hardware, cloud, Microsoft 365, security, user
+                      support, and strategy — all under one predictable monthly fee.
+                    </p>
+                    <ul className="grid sm:grid-cols-2 gap-3 mb-6">
+                      {[
+                        'Dedicated account manager',
+                        'Unlimited remote helpdesk',
+                        'On-site engineer visits',
+                        'Proactive patching & security',
+                        'Cloud & Microsoft 365 admin',
+                        'Quarterly IT strategy reviews',
+                      ].map((f) => (
+                        <li key={f} className="flex items-start text-sm">
+                          <CheckCircle className="text-accent mr-2 mt-0.5 flex-shrink-0" size={18} />
+                          <span className="text-white/90">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-xl">
+                      <Link to="/service/managed-it-services">
+                        Explore Managed IT
+                        <ArrowRight className="ml-2" size={18} />
+                      </Link>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20">
+                      <a href="https://wa.me/263772800790" target="_blank" rel="noopener noreferrer">
+                        <MessageCircle className="mr-2" size={18} />
+                        Chat on WhatsApp
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </ScrollAnimation>
         </div>
       </section>
 
