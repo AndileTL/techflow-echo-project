@@ -105,7 +105,7 @@ const IspReseller = () => {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="mr-2" size={20} />
-                  WhatsApp 0772 800 790
+                  WhatsApp Support 0772 800 790
                 </a>
               </Button>
               <Button
