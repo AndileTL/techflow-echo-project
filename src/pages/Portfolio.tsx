@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, Code, Network, Cloud, Zap, Server, Users } from 'lucide-react';
+import { ExternalLink, Code, Network, Cloud, Zap, Server, Users, Settings, Wifi, Phone, Satellite } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,6 +10,51 @@ import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/
 
 const Portfolio = () => {
   const projects = [
+    {
+      id: 'managed-it-services',
+      title: "Managed IT Services for Insurance Firm",
+      category: "Managed IT Services",
+      description: "Outsourced IT department for a Harare-based insurer — proactive monitoring, patching, and 24/7 helpdesk under one monthly fee.",
+      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop",
+      technologies: ["NinjaOne", "Microsoft Intune", "Sophos", "ServiceDesk"],
+      icon: Settings
+    },
+    {
+      id: 'isp-reseller-redundancy',
+      title: "Multi-ISP Redundancy with Starlink Failover",
+      category: "ISP Reseller & Redundancy",
+      description: "Designed and deployed a Liquid + TelOne + Starlink failover stack for a logistics company — zero downtime for 12 months running.",
+      image: "https://images.unsplash.com/photo-1551703599-6b3e8379aa8d?w=400&h=300&fit=crop",
+      technologies: ["Liquid Home", "TelOne", "Starlink", "MikroTik SD-WAN"],
+      icon: Wifi
+    },
+    {
+      id: 'voip-deployment',
+      title: "VoIP Rollout for National Retailer",
+      category: "VoIP Solutions",
+      description: "Hosted PBX and SIP trunking across 18 branches — call analytics, conferencing, and 40% lower monthly telephony costs.",
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop",
+      technologies: ["3CX", "SIP Trunking", "Yealink", "Call Analytics"],
+      icon: Phone
+    },
+    {
+      id: 'microsoft-365-migration',
+      title: "Microsoft 365 Migration for NGO",
+      category: "Cloud & Microsoft 365",
+      description: "Migrated 250 mailboxes to Microsoft 365 with Teams, SharePoint, Intune device management and conditional access policies.",
+      image: "https://images.unsplash.com/photo-1633419461186-7d40a38105ec?w=400&h=300&fit=crop",
+      technologies: ["Microsoft 365", "Teams", "Intune", "Azure AD"],
+      icon: Cloud
+    },
+    {
+      id: 'starlink-mining-site',
+      title: "Starlink Deployment at Remote Mine Site",
+      category: "Starlink Installation",
+      description: "Professional Starlink installation, network configuration, and managed support for a remote mining operation 400km outside Harare.",
+      image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=300&fit=crop",
+      technologies: ["Starlink Business", "UniFi", "VLANs", "24/7 NOC"],
+      icon: Satellite
+    },
     {
       id: 'erp-system',
       title: "Enterprise Resource Planning System",
@@ -22,7 +67,7 @@ const Portfolio = () => {
     {
       id: 'cloud-migration',
       title: "Cloud Infrastructure Migration",
-      category: "Cloud Solutions",
+      category: "Cloud & Microsoft 365",
       description: "Complete migration of legacy systems to AWS cloud infrastructure for improved scalability.",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop",
       technologies: ["AWS", "Kubernetes", "Terraform", "Docker"],

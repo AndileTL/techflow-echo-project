@@ -96,7 +96,7 @@ const IspReseller = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 sm:px-8 py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 whitespace-normal h-auto min-h-[3.5rem]"
                 asChild
               >
                 <a
@@ -111,7 +111,7 @@ const IspReseller = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 font-semibold px-8 py-6 text-lg"
+                className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 font-semibold px-6 sm:px-8 py-6 text-base sm:text-lg"
                 asChild
               >
                 <Link to="/services#consultation-form">Request a Quote</Link>
