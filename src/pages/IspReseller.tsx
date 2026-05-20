@@ -105,7 +105,7 @@ const IspReseller = () => {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="mr-2" size={20} />
-                  WhatsApp 0772 800 790
+                  WhatsApp Support 0772 800 790
                 </a>
               </Button>
               <Button
@@ -357,7 +357,7 @@ const IspReseller = () => {
                     <Button asChild size="lg" variant="outline" className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20">
                       <a href="https://wa.me/263772800790" target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-2" size={18} />
-                        Chat on WhatsApp
+                        WhatsApp Support
                       </a>
                     </Button>
                   </div>
