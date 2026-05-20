@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://techflow.co.zw/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://techflow.co.zw/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://techflow.co.zw/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://techflow.co.zw/portfolio</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://techflow.co.zw/starlink</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://techflow.co.zw/isp-reseller</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://techflow.co.zw/service/managed-it-services</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/it-support</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/cloud-support</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/voip-solutions</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/network-support</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/software-development</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/starlink-installation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/isp-reseller</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://techflow.co.zw/service/it-consultant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://techflow.co.zw/service/digital-transformation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://techflow.co.zw/service/it-infrastructure</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>
