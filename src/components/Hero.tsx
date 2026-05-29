@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Zap, Cpu, Network, Rocket } from 'lucide-react';
+import { ArrowRight, CheckCircle, Zap, Cpu, Network } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {

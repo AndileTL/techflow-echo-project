@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Sparkles, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
