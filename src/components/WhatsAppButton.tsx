@@ -6,7 +6,6 @@ const WhatsAppButton = () => {
 
   const numbers = [
     { label: 'Sales & Support', number: '263779822400', display: '0779 822 400' },
-    { label: 'WhatsApp Support', number: '263772800790', display: '0772 800 790' },
   ];
 
   return (

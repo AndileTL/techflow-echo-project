@@ -53,22 +53,6 @@ const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* 2026 Welcome Banner */}
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-lg">
-            <Rocket className="text-accent animate-bounce" size={22} />
-            <span className="text-base md:text-lg font-semibold bg-gradient-to-r from-accent via-white to-secondary bg-clip-text text-transparent">
-              May 2026 — A Fresh Look, Same Trusted Partner
-            </span>
-            <Rocket className="text-accent animate-bounce" size={22} />
-          </div>
-        </motion.div>
-
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div 
             className="space-y-8"

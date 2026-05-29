@@ -27,23 +27,6 @@ const Footer = () => {
       </div>
       
       <div className="container mx-auto px-4 py-12 relative z-10">
-        {/* 2026 greeting banner */}
-        <motion.div 
-          className="text-center mb-8 pb-8 border-b border-white/20"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center space-x-3">
-            <Sparkles className="text-accent animate-pulse" size={24} />
-            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
-              May 2026 — Innovating Together
-            </span>
-            <Sparkles className="text-accent animate-pulse" size={24} />
-          </div>
-        </motion.div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <motion.div 

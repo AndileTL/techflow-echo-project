@@ -65,16 +65,9 @@ const Contact = () => {
     },
     {
       icon: MessageSquare,
-      title: "WhatsApp Sales",
+      title: "WhatsApp",
       details: ["0779 822 400"],
       isWhatsApp: true
-    },
-    {
-      icon: MessageSquare,
-      title: "WhatsApp ISP",
-      details: ["0772 800 790"],
-      isWhatsApp: true,
-      whatsappNumber: "263772800790"
     },
     {
       icon: Mail,
@@ -84,7 +77,7 @@ const Contact = () => {
     {
       icon: Clock,
       title: "Business Hours",
-      details: ["Monday - Friday: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 4:00 PM"]
+      details: ["Monday - Friday: 09:00 - 18:00", "Saturday: 08:00 - 13:00", "Sunday: Closed"]
     }
   ];
 
