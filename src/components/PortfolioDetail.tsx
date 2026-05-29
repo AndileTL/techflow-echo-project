@@ -10,6 +10,116 @@ const PortfolioDetail = () => {
   const { projectId } = useParams();
 
   const projects = {
+    'managed-it-services': {
+      title: "Managed IT Services for Insurance Firm",
+      category: "Managed IT Services",
+      description: "TechFlow became the outsourced IT department for a leading Harare-based insurance firm — taking full ownership of monitoring, patching, helpdesk and vendor management under a single predictable monthly fee.",
+      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=400&fit=crop",
+      technologies: ["NinjaOne RMM", "Microsoft Intune", "Sophos Endpoint", "ServiceDesk Plus"],
+      partners: ["Microsoft", "Sophos", "NinjaOne", "ManageEngine"],
+      deliveryMethods: [
+        "24/7 Proactive Monitoring & Alerting",
+        "Automated Patch Management",
+        "Tiered Helpdesk (L1 / L2 / L3)",
+        "Quarterly Business Reviews",
+        "Asset & License Management",
+        "Onsite Engineer Dispatch in Harare"
+      ],
+      projectDetails: {
+        duration: "Ongoing — 3 year contract",
+        teamSize: "6 dedicated engineers",
+        client: "Harare-based Insurance Firm",
+        scope: "Full IT outsourcing — endpoints, servers, Microsoft 365, network and user support across 180 staff and 4 branches."
+      }
+    },
+    'isp-reseller-redundancy': {
+      title: "Multi-ISP Redundancy with Starlink Failover",
+      category: "ISP Reseller & Redundancy",
+      description: "Designed and deployed a Liquid Home + TelOne + Starlink failover stack for a logistics company — guaranteeing zero internet downtime for 12 months running across their Harare HQ and warehouse.",
+      image: "https://images.unsplash.com/photo-1551703599-6b3e8379aa8d?w=800&h=400&fit=crop",
+      technologies: ["Liquid Home Fibre", "TelOne ADSL", "Starlink Business", "MikroTik SD-WAN"],
+      partners: ["Liquid Home", "TelOne", "Starlink", "MikroTik"],
+      deliveryMethods: [
+        "Multi-WAN Design & Load Balancing",
+        "Automatic Starlink Failover (sub-second)",
+        "Per-link Bandwidth Monitoring",
+        "SLA-backed ISP Management",
+        "Consolidated Monthly Billing",
+        "24/7 NOC Escalation"
+      ],
+      projectDetails: {
+        duration: "8 weeks rollout, ongoing managed service",
+        teamSize: "4 network engineers",
+        client: "National Logistics Operator",
+        scope: "Three-link active/active SD-WAN with Starlink as automatic failover for guaranteed business uptime."
+      }
+    },
+    'voip-deployment': {
+      title: "VoIP Rollout for National Retailer",
+      category: "VoIP Solutions",
+      description: "Hosted 3CX PBX and SIP trunking deployed across 18 branches — delivering call analytics, conferencing and a 40% reduction in monthly telephony costs.",
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop",
+      technologies: ["3CX Hosted PBX", "SIP Trunking", "Yealink Handsets", "Call Analytics"],
+      partners: ["3CX", "Yealink", "Liquid Telecom", "TelOne"],
+      deliveryMethods: [
+        "Number Porting & SIP Trunk Provisioning",
+        "Branch-by-Branch Cutover",
+        "Handset Procurement & Configuration",
+        "Call Flow & IVR Design",
+        "Staff Training & Documentation",
+        "Ongoing PBX Management"
+      ],
+      projectDetails: {
+        duration: "4 months",
+        teamSize: "5 VoIP engineers",
+        client: "National Retail Chain (18 branches)",
+        scope: "End-to-end hosted PBX rollout with SIP trunking, mobile apps and call analytics across all branches."
+      }
+    },
+    'microsoft-365-migration': {
+      title: "Microsoft 365 Migration for NGO",
+      category: "Cloud & Microsoft 365",
+      description: "Migrated 250 mailboxes from legacy on-premise mail to Microsoft 365 with Teams, SharePoint, Intune device management and conditional access policies.",
+      image: "https://images.unsplash.com/photo-1633419461186-7d40a38105ec?w=800&h=400&fit=crop",
+      technologies: ["Microsoft 365", "Exchange Online", "Teams", "Intune", "Azure AD"],
+      partners: ["Microsoft", "BitTitan", "Cisco Duo"],
+      deliveryMethods: [
+        "Tenant Design & Identity Planning",
+        "Cutover & Hybrid Mailbox Migration",
+        "Teams & SharePoint Adoption",
+        "Intune MDM Enrolment",
+        "Conditional Access & MFA",
+        "End-user Training Sessions"
+      ],
+      projectDetails: {
+        duration: "3 months",
+        teamSize: "4 cloud engineers",
+        client: "International NGO (Zimbabwe operations)",
+        scope: "Full Microsoft 365 migration with managed devices, security baseline and ongoing tenant administration."
+      }
+    },
+    'starlink-mining-site': {
+      title: "Starlink Deployment at Remote Mine Site",
+      category: "Starlink Installation",
+      description: "Professional Starlink Business installation, LAN configuration and 24/7 managed support for a remote mining operation 400km outside Harare — restoring connectivity where no terrestrial ISP could reach.",
+      image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&h=400&fit=crop",
+      technologies: ["Starlink Business", "UniFi Switching", "VLAN Segmentation", "24/7 NOC"],
+      partners: ["Starlink", "Ubiquiti", "MikroTik"],
+      deliveryMethods: [
+        "Site Survey & Line-of-Sight Planning",
+        "Professional Dish Mounting & Grounding",
+        "Router, Switch & Wi-Fi Configuration",
+        "VLAN & Guest Network Design",
+        "Remote Monitoring & Alerts",
+        "Onsite Maintenance Visits"
+      ],
+      projectDetails: {
+        duration: "2 weeks deployment, ongoing managed service",
+        teamSize: "3 field engineers",
+        client: "Mining Operator — Mashonaland West",
+        scope: "Turnkey Starlink Business deployment with full LAN/Wi-Fi build-out and 24/7 remote management."
+      }
+    },
     'erp-system': {
       title: "Enterprise Resource Planning System",
       category: "Software Development",
