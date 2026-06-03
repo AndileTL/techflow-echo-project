@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative bg-hero-radial text-white pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden"
+      className="relative bg-hero-radial text-white -mt-16 lg:-mt-20 pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden"
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 opacity-[0.07] pointer-events-none"

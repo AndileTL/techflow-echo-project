@@ -31,11 +31,11 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled || open
           ? 'bg-brand-navy/85 backdrop-blur-xl border-b border-white/10'
           : isHome
-            ? 'bg-transparent'
+            ? 'bg-brand-navy/40 backdrop-blur-md'
             : 'bg-brand-navy/70 backdrop-blur-md'
       }`}
     >
