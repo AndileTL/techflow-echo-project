@@ -5,96 +5,101 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 100%;
+    --foreground: 260 40% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 260 40% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 260 40% 10%;
 
-    --primary: 217 91% 60%;
+    /* TechFlow purple — primary brand */
+    --primary: 282 72% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 172 66% 50%;
+    /* Electric blue — secondary accent */
+    --secondary: 217 91% 60%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 260 20% 96%;
+    --muted-foreground: 260 10% 45%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 0 0% 100%;
+    /* Cyan — tertiary accent */
+    --accent: 190 90% 55%;
+    --accent-foreground: 260 40% 10%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 260 20% 90%;
+    --input: 260 20% 90%;
+    --ring: 282 72% 48%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
     /* Brand colors */
     --brand-blue: 217 91% 60%;
-    --brand-teal: 172 66% 50%;
-    --brand-amber: 38 92% 50%;
-    --brand-navy: 222 47% 11%;
+    --brand-teal: 190 90% 55%;
+    --brand-amber: 32 95% 55%;
+    --brand-navy: 260 55% 8%;
+    --brand-purple: 282 72% 48%;
+    --brand-magenta: 298 75% 58%;
     
     /* WhatsApp */
     --whatsapp: 142 70% 45%;
     --whatsapp-dark: 142 70% 38%;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-foreground: 260 40% 10%;
+    --sidebar-primary: 282 72% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 172 66% 50%;
+    --sidebar-accent: 217 91% 60%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-border: 260 20% 90%;
+    --sidebar-ring: 282 72% 48%;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 260 55% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 260 45% 9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 260 45% 9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 217 91% 60%;
+    --primary: 290 80% 62%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 172 66% 50%;
+    --secondary: 217 91% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 260 30% 16%;
+    --muted-foreground: 260 15% 70%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 190 90% 60%;
+    --accent-foreground: 260 55% 6%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --border: 260 30% 18%;
+    --input: 260 30% 18%;
+    --ring: 290 80% 62%;
     
     --whatsapp: 142 70% 45%;
     --whatsapp-dark: 142 70% 38%;
     
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-background: 260 45% 9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 290 80% 62%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 172 66% 50%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 217 91% 65%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 260 30% 18%;
+    --sidebar-ring: 290 80% 62%;
   }
 }
 
@@ -105,7 +110,13 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
   }
 
   html {
@@ -127,20 +138,46 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    background: linear-gradient(135deg, hsl(var(--brand-magenta)), hsl(var(--primary)), hsl(var(--secondary)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-brand {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    background: linear-gradient(135deg, hsl(var(--brand-magenta)), hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
   }
 
   .glass-effect {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .bg-hero-radial {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, hsl(var(--brand-magenta) / 0.35), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 30%, hsl(var(--secondary) / 0.25), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 70%, hsl(var(--accent) / 0.2), transparent 60%),
+      hsl(var(--brand-navy));
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 }
 
