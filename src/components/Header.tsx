@@ -1,225 +1,138 @@
-import { useState } from 'react';
-import { Menu, X, Phone, Mail, MessageCircle, ChevronDown, ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import logo from '@/assets/techflow-logo.png';
+
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Solutions', href: '/services' },
+  { name: 'Connectivity', href: '/isp-reseller' },
+  { name: 'Success Stories', href: '/portfolio' },
+  { name: 'About', href: '/about' },
+];
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isServicesActive =
-    location.pathname === '/services' ||
-    location.pathname.startsWith('/service/') ||
-    location.pathname === '/isp-reseller' ||
-    location.pathname === '/starlink';
 
-  const serviceLinks = [
-    { name: 'Managed IT Services', href: '/service/managed-it-services' },
-    { name: 'Cloud & Microsoft 365', href: '/service/cloud-support' },
-    { name: 'VoIP Solutions', href: '/service/voip-solutions' },
-    { name: 'ISP Reseller & Redundancy', href: '/isp-reseller' },
-    { name: 'Network Support', href: '/service/network-support' },
-    { name: 'Software Development', href: '/service/software-development' },
-    { name: 'IT Support', href: '/service/it-support' },
-    { name: 'Starlink Installation', href: '/starlink' },
-    { name: 'View All Services', href: '/services' },
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'About', href: '/about' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/#contact' },
-  ];
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  const isHome = location.pathname === '/';
 
   return (
-    <header className="bg-background/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-border">
-      {/* Top bar with modern gradient */}
-      <div className="bg-gradient-to-r from-brand-navy via-primary to-secondary text-white py-2.5">
-        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center space-x-6">
-            <a href="tel:+2638677211025" className="flex items-center space-x-2 hover:text-accent transition-colors duration-300">
-              <Phone size={14} />
-              <span className="font-medium">+2638677211025</span>
-            </a>
-            <a href="mailto:sales@techflow.co.zw" className="hidden sm:flex items-center space-x-2 hover:text-accent transition-colors duration-300">
-              <Mail size={14} />
-              <span className="font-medium">sales@techflow.co.zw</span>
-            </a>
-          </div>
-          <a 
-            href="https://wa.me/263779822400" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 bg-whatsapp/20 hover:bg-whatsapp/30 px-3 py-1 rounded-full transition-colors duration-300"
-          >
-            <MessageCircle size={14} className="text-green-300" />
-            <span className="font-medium text-green-300">WhatsApp Us</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Main navigation with logo */}
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-3 group">
-            <img 
-              src="/lovable-uploads/981d3653-41bf-4379-847b-f87f6bf2e468.png" 
-              alt="TechFlow Logo" 
-              className="h-12 w-12 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled || open
+          ? 'bg-brand-navy/85 backdrop-blur-xl border-b border-white/10'
+          : isHome
+            ? 'bg-transparent'
+            : 'bg-brand-navy/70 backdrop-blur-md'
+      }`}
+    >
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <img
+              src={logo}
+              alt="TechFlow Technologies"
+              className="h-9 w-9 lg:h-10 lg:w-10 object-contain transition-transform duration-500 group-hover:scale-110"
             />
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="font-display text-lg lg:text-xl font-bold tracking-tight text-white">
               TechFlow
-            </h1>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              if (item.name === 'Services') {
-                return (
-                  <div
-                    key={item.name}
-                    className="relative"
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
-                    <Link
-                      to={item.href}
-                      className={`font-medium transition-all duration-300 relative group flex items-center gap-1 ${isServicesActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
-                    >
-                      {item.name}
-                      <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
-                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 rounded-full ${isServicesActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                    </Link>
-                    {isServicesOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 z-50">
-                        <div className="bg-background border border-border rounded-xl shadow-2xl overflow-hidden">
-                          {serviceLinks.map((s) => (
-                            <Link
-                              key={s.href}
-                              to={s.href}
-                              className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 hover:text-primary transition-colors duration-200 border-b border-border last:border-0"
-                              onClick={() => setIsServicesOpen(false)}
-                            >
-                              {s.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-              return item.href.startsWith('/#') ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300 rounded-full"></span>
-                </a>
-              ) : (
-                <NavLink
-                  key={item.name}
-                  to={item.href}
-                  end
-                  className={({ isActive }) =>
-                    `font-medium transition-all duration-300 relative group ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      {item.name}
-                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 rounded-full ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                    </>
-                  )}
-                </NavLink>
-              );
-            })}
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                end={item.href === '/'}
+                className={({ isActive }) =>
+                  `relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                    isActive ? 'text-white' : 'text-white/70 hover:text-white'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    {item.name}
+                    <span
+                      className={`absolute left-4 right-4 -bottom-px h-px bg-gradient-to-r from-brand-magenta via-primary to-accent transition-opacity duration-300 ${
+                        isActive ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="#contact"
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+            >
+              Contact
+            </a>
             <Link
               to="/services#consultation-form"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary via-secondary to-accent text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="group inline-flex items-center gap-2 rounded-full bg-white text-brand-navy px-5 py-2.5 text-sm font-semibold shadow-lg hover:shadow-xl hover:bg-accent hover:text-brand-navy transition-all duration-300"
             >
-              Get a Quote
-              <ArrowRight size={16} />
+              Book Consultation
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-foreground hover:text-primary transition-colors p-2"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="lg:hidden p-2 text-white"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-fade-in border-t border-border pt-4">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => {
-                if (item.name === 'Services') {
-                  return (
-                    <div key={item.name} className="flex flex-col">
-                      <button
-                        onClick={() => setIsMobileServicesOpen((v) => !v)}
-                        className="flex items-center justify-between text-muted-foreground hover:text-primary font-medium py-2"
-                      >
-                        <span>Services</span>
-                        <ChevronDown size={16} className={`transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
-                      </button>
-                      {isMobileServicesOpen && (
-                        <div className="pl-4 mt-1 flex flex-col space-y-2 border-l-2 border-primary/30">
-                          {serviceLinks.map((s) => (
-                            <Link
-                              key={s.href}
-                              to={s.href}
-                              className="text-sm text-muted-foreground hover:text-primary py-1"
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                setIsMobileServicesOpen(false);
-                              }}
-                            >
-                              {s.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-                return item.href.startsWith('#') ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-muted-foreground hover:text-primary font-medium transition-colors duration-200 py-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="text-muted-foreground hover:text-primary font-medium transition-colors duration-200 py-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-              <Link
-                to="/starlink"
-                className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg font-medium text-center"
-                onClick={() => setIsMenuOpen(false)}
+        {open && (
+          <div className="lg:hidden pb-6 pt-2 animate-fade-in">
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  end={item.href === '/'}
+                  className={({ isActive }) =>
+                    `px-4 py-3 rounded-lg text-base font-medium ${
+                      isActive ? 'bg-white/10 text-white' : 'text-white/80 hover:bg-white/5'
+                    }`
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-lg text-base font-medium text-white/80 hover:bg-white/5"
               >
-                Starlink Installation
+                Contact
+              </a>
+              <Link
+                to="/services#consultation-form"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-navy px-5 py-3 text-sm font-semibold"
+              >
+                Book Consultation
+                <ArrowRight size={16} />
               </Link>
             </div>
           </div>
