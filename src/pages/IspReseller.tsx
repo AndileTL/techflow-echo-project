@@ -355,7 +355,7 @@ const IspReseller = () => {
                       </Link>
                     </Button>
                     <Button asChild size="lg" variant="outline" className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20">
-                      <a href="https://wa.me/263772800790" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-2" size={18} />
                         WhatsApp Support
                       </a>
