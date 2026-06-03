@@ -1,184 +1,143 @@
-import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Zap, Cpu, Network } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const stats = [
+  { value: '99.9%', label: 'Uptime' },
+  { value: '24/7', label: 'Support' },
+  { value: 'Nationwide', label: 'Coverage' },
+  { value: 'Enterprise', label: 'Security' },
+];
+
 const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
   return (
-    <section id="home" className="relative bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white py-24 overflow-hidden">
-      {/* Modern animated background elements */}
-      <div className="absolute inset-0 opacity-30">
-        <motion.div 
-          className="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-20 w-96 h-96 bg-secondary rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.div 
-          className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent rounded-full blur-3xl"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.4, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
-      </div>
+    <section
+      id="home"
+      className="relative bg-hero-radial text-white -mt-16 lg:-mt-20 pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden"
+    >
+      {/* Subtle grid */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+          maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)',
+        }}
+      />
 
-      {/* Geometric pattern overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+      {/* Floating orbs */}
+      <motion.div
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-brand-magenta/30 blur-3xl"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/25 blur-3xl"
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+      />
+      <motion.div
+        className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full bg-accent/20 blur-3xl"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+      />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-effect text-xs sm:text-sm font-medium text-white/80 mb-8"
           >
-            <motion.div variants={itemVariants} className="flex items-center space-x-2 text-secondary">
-              <Zap className="animate-pulse" size={20} />
-              <span className="text-sm uppercase tracking-widest font-medium">Next-Gen Technology</span>
-            </motion.div>
-            
-            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] tracking-tight">
-              Smarter IT.
-              <span className="block bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent pb-1">
-                Always Online.
-              </span>
-              Built for Zimbabwe.
-            </motion.h1>
-            
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl">
-              Managed IT, Cloud & Microsoft 365, VoIP, and multi-ISP connectivity
-              with Starlink failover — fully managed by TechFlow so your team can
-              focus on what matters.
-            </motion.p>
-            
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 text-lg px-8"
-              >
-                Get Started
-                <ArrowRight className="ml-2" size={20} />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-brand-navy transition-all duration-300 backdrop-blur-sm text-lg px-8"
-              >
-                Learn More
-              </Button>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6 pt-8">
-              {[
-                { icon: CheckCircle, text: "24/7 Support" },
-                { icon: Cpu, text: "Expert Team" },
-                { icon: Network, text: "Proven Results" },
-                { icon: Zap, text: "Custom Solutions" }
-              ].map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  className="flex items-center space-x-3 group"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                    <item.icon className="text-accent group-hover:scale-110 transition-transform duration-300" size={20} />
-                  </div>
-                  <span className="font-medium group-hover:text-accent transition-colors duration-300">{item.text}</span>
-                </motion.div>
-              ))}
-            </motion.div>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+            </span>
+            Trusted by businesses across Zimbabwe & Southern Africa
           </motion.div>
 
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.9 }}
+            className="font-display text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[1.02] tracking-tight text-balance"
           >
-            {/* Decorative rings */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-xl"></div>
-            
-            <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-8 shadow-2xl backdrop-blur-md border border-white/20">
-              <div className="bg-white rounded-2xl p-8 text-foreground shadow-inner">
-                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Why Choose TechFlow?
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    "Industry-leading expertise in technology solutions",
-                    "Customized approach for every client's unique needs",
-                    "Ongoing support and maintenance services",
-                    "Competitive pricing with no hidden costs"
-                  ].map((item, index) => (
-                    <motion.li 
-                      key={index} 
-                      className="flex items-start space-x-3 group"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <CheckCircle className="text-white" size={14} />
-                      </div>
-                      <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-                
-                {/* Stats row */}
-                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
-                  {[
-                    { value: "500+", label: "Clients" },
-                    { value: "99%", label: "Uptime" },
-                    { value: "24/7", label: "Support" }
-                  ].map((stat, index) => (
-                    <motion.div 
-                      key={index} 
-                      className="text-center"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1 + index * 0.1 }}
-                    >
-                      <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{stat.value}</div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</div>
-                    </motion.div>
-                  ))}
+            Smarter Technology.
+            <span className="block bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent">
+              Faster Connectivity.
+            </span>
+            <span className="block bg-gradient-to-r from-brand-magenta via-primary to-secondary bg-clip-text text-transparent">
+              Built For Africa.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.8 }}
+            className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto text-pretty leading-relaxed"
+          >
+            TechFlow delivers managed IT, cloud infrastructure, cybersecurity,
+            connectivity, and digital transformation solutions that keep
+            businesses connected, secure, and productive.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-10 flex flex-col sm:flex-row gap-3 justify-center"
+          >
+            <Link
+              to="/services#consultation-form"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-navy px-7 py-3.5 text-base font-semibold shadow-xl hover:bg-accent transition-all duration-300 hover:scale-[1.02]"
+            >
+              Book Consultation
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+            <a
+              href="tel:+2638677211025"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white px-7 py-3.5 text-base font-semibold hover:bg-white/10 transition-all duration-300"
+            >
+              <Phone size={18} />
+              Talk To An Expert
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.85, duration: 0.8 }}
+            className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px rounded-2xl glass-card overflow-hidden"
+          >
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 + i * 0.1 }}
+                className="bg-brand-navy/40 px-6 py-6"
+              >
+                <div className="font-display text-2xl sm:text-3xl font-bold bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent">
+                  {s.value}
                 </div>
-              </div>
-            </div>
+                <div className="text-xs sm:text-sm text-white/60 mt-1 uppercase tracking-wider">
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Gradient fade to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
     </section>
   );
 };

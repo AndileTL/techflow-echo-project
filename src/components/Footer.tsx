@@ -1,176 +1,77 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, MessageCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail, MessageCircle, Linkedin, Facebook } from 'lucide-react';
+import logo from '@/assets/techflow-logo.png';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white relative overflow-hidden">
-      {/* Background decoration with 2026 theme */}
-      <div className="absolute inset-0 opacity-10">
-        <motion.div 
-          className="absolute top-10 left-20 w-32 h-32 bg-primary rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-20 w-40 h-40 bg-secondary rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-        />
-        <motion.div 
-          className="absolute top-1/2 left-1/2 w-24 h-24 bg-accent rounded-full blur-2xl"
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-        />
+    <footer className="relative bg-brand-navy text-white overflow-hidden">
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute -top-20 left-1/4 w-96 h-96 rounded-full bg-brand-magenta/30 blur-3xl" />
+        <div className="absolute -bottom-20 right-1/4 w-96 h-96 rounded-full bg-secondary/20 blur-3xl" />
       </div>
-      
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <motion.div 
-            className="space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/lovable-uploads/981d3653-41bf-4379-847b-f87f6bf2e468.png" 
-                alt="TechFlow Logo" 
-                className="h-10 w-10 rounded-lg"
-              />
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-foreground to-secondary bg-clip-text text-transparent">
-                TechFlow
-              </h3>
-            </div>
-            <p className="text-white/80 leading-relaxed">
-              Your trusted partner for innovative technology solutions in Zimbabwe. 
-              We transform businesses through cutting-edge digital solutions.
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-5">
+            <Link to="/" className="flex items-center gap-3">
+              <img src={logo} alt="TechFlow" className="h-10 w-10 object-contain" />
+              <span className="font-display text-xl font-bold">TechFlow Technologies</span>
+            </Link>
+            <p className="mt-5 text-white/70 leading-relaxed max-w-md">
+              Smarter technology, faster connectivity, built for Africa. Managed IT,
+              cloud, cybersecurity and connectivity solutions from Harare to the region.
             </p>
-            <div className="flex space-x-4">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
-                <motion.a 
-                  key={index}
-                  href="#" 
-                  className="text-white/60 hover:text-primary transition-colors duration-300"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Icon size={20} />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div 
-            className="space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h4 className="text-lg font-semibold text-accent">Quick Links</h4>
-            <ul className="space-y-2">
-              {[
-                { label: 'Home', to: '/' },
-                { label: 'Services', to: '/services' },
-                { label: 'About', to: '/about' },
-                { label: 'Portfolio', to: '/portfolio' },
-                { label: 'ISP Reseller', to: '/isp-reseller' },
-                { label: 'Starlink', to: '/starlink' },
-              ].map((link, index) => (
-                <motion.li key={index} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                  <Link to={link.to} className="text-white/80 hover:text-primary transition-colors duration-300">
-                    {link.label}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Services */}
-          <motion.div 
-            className="space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h4 className="text-lg font-semibold text-accent">Our Services</h4>
-            <ul className="space-y-2">
-              {['IT Consultant', 'Managed IT Services', 'Network Support', 'Software Development', 'Cloud & Microsoft 365', 'VoIP Solutions', 'ISP Reseller & Redundancy', 'Digital Transformation', 'IT Support'].map((service, index) => (
-                <motion.li key={index} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                  <a href="#" className="text-white/80 hover:text-secondary transition-colors duration-300">
-                    {service}
-                  </a>
-                </motion.li>
-              ))}
-              <motion.li whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                <Link to="/starlink" className="text-accent hover:text-accent/80 transition-colors duration-300 font-semibold">
-                  🛰️ Starlink Installation
-                </Link>
-              </motion.li>
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div 
-            className="space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h4 className="text-lg font-semibold text-accent">Contact Info</h4>
-            <div className="space-y-3">
-              <motion.div className="flex items-start space-x-3 group" whileHover={{ x: 3 }}>
-                <MapPin className="text-primary mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
-                <span className="text-white/80 group-hover:text-white transition-colors duration-300">
-                  13 Audley Street,<br />
-                  Carneborne Park,<br />
-                  Harare, Zimbabwe
-                </span>
-              </motion.div>
-              <motion.div className="flex items-center space-x-3 group" whileHover={{ x: 3 }}>
-                <Phone className="text-secondary flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
-                <span className="text-white/80 group-hover:text-white transition-colors duration-300">+2638677211025</span>
-              </motion.div>
-              <motion.a 
-                href="https://wa.me/263779822400" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center space-x-3 group"
-                whileHover={{ x: 3 }}
-              >
-                <MessageCircle className="text-whatsapp flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
-                <span className="text-white/80 group-hover:text-white transition-colors duration-300">WhatsApp: 0779822400</span>
-              </motion.a>
-              <motion.div className="flex items-center space-x-3 group" whileHover={{ x: 3 }}>
-                <Mail className="text-accent flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={16} />
-                <span className="text-white/80 group-hover:text-white transition-colors duration-300">sales@techflow.co.zw</span>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/60 text-sm">
-              © {currentYear} TechFlow. All rights reserved. ✨ Building the Future Together
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-white/60 hover:text-primary text-sm transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="text-white/60 hover:text-secondary text-sm transition-colors duration-300">Terms of Service</a>
-              <a href="#" className="text-white/60 hover:text-accent text-sm transition-colors duration-300">Cookie Policy</a>
+            <div className="mt-6 flex gap-3">
+              <a href="https://www.linkedin.com/company/techflow-technologies-zw" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+                <Linkedin size={16} />
+              </a>
+              <a href="https://www.facebook.com/TechFlowZW" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+                <Facebook size={16} />
+              </a>
+              <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+                <MessageCircle size={16} />
+              </a>
             </div>
           </div>
+
+          <div className="lg:col-span-3">
+            <h4 className="font-display font-semibold text-white mb-4">Explore</h4>
+            <ul className="space-y-2.5 text-sm text-white/70">
+              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Solutions</Link></li>
+              <li><Link to="/isp-reseller" className="hover:text-white transition-colors">Connectivity</Link></li>
+              <li><Link to="/portfolio" className="hover:text-white transition-colors">Success Stories</Link></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div className="lg:col-span-4">
+            <h4 className="font-display font-semibold text-white mb-4">Get in touch</h4>
+            <ul className="space-y-3 text-sm text-white/70">
+              <li className="flex items-start gap-3">
+                <MapPin size={16} className="text-accent mt-0.5 flex-shrink-0" />
+                <span>13 Audley Street, Carneborne Park, Harare, Zimbabwe</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={16} className="text-accent flex-shrink-0" />
+                <a href="tel:+2638677211025" className="hover:text-white transition-colors">+263 8677 211 025</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <MessageCircle size={16} className="text-whatsapp flex-shrink-0" />
+                <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp 0779 822 400</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail size={16} className="text-accent flex-shrink-0" />
+                <a href="mailto:sales@techflow.co.zw" className="hover:text-white transition-colors">sales@techflow.co.zw</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/50">
+          <p>© {year} TechFlow Technologies. All rights reserved.</p>
+          <p>Mon–Fri 09:00–18:00 · Sat 08:00–13:00</p>
         </div>
       </div>
     </footer>

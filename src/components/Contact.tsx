@@ -1,232 +1,165 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    const formData = new FormData(e.currentTarget);
+    setSubmitting(true);
+    const fd = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      phone: formData.get('phone') as string || null,
-      company: null,
-      service: formData.get('subject') as string || null,
-      message: formData.get('message') as string,
+      name: fd.get('name') as string,
+      email: fd.get('email') as string,
+      phone: (fd.get('phone') as string) || null,
+      company: (fd.get('company') as string) || null,
+      service: (fd.get('service') as string) || null,
+      message: fd.get('message') as string,
     };
-
     try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([data]);
-
+      const { error } = await supabase.from('contact_submissions').insert([data]);
       if (error) throw error;
-      
-      toast({
-        title: "Message Sent Successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      
+      toast({ title: 'Message sent', description: "We'll be in touch within 24 hours." });
       (e.target as HTMLFormElement).reset();
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
+    } catch (err) {
+      console.error(err);
+      toast({ title: 'Error', description: 'Failed to send. Please try again.', variant: 'destructive' });
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
   };
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Our Office",
-      details: ["13 Audley Street", "Carneborne Park", "Harare, Zimbabwe"]
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      details: ["+2638677211025"]
-    },
-    {
-      icon: MessageSquare,
-      title: "WhatsApp",
-      details: ["0779 822 400"],
-      isWhatsApp: true
-    },
-    {
-      icon: Mail,
-      title: "Email Us",
-      details: ["sales@techflow.co.zw", "support@techflow.co.zw"]
-    },
-    {
-      icon: Clock,
-      title: "Business Hours",
-      details: ["Monday - Friday: 09:00 - 18:00", "Saturday: 08:00 - 13:00", "Sunday: Closed"]
-    }
-  ];
-
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-brand-navy via-primary/90 to-secondary/80 text-white relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-primary rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-secondary rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-accent rounded-full blur-2xl animate-pulse delay-500"></div>
+    <section id="contact" className="relative py-24 lg:py-32 bg-brand-navy text-white overflow-hidden">
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute top-0 left-1/3 w-[600px] h-[600px] rounded-full bg-brand-magenta/30 blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/25 blur-3xl" />
       </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <ScrollAnimation>
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-white/20">
-              <MessageSquare className="text-secondary" size={20} />
-              <span className="text-white/90 font-semibold">Get In Touch</span>
-            </div>
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-secondary to-accent bg-clip-text text-transparent">Contact Us</h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-4">
-              Ready to transform your business with cutting-edge technology? 
-              Let's discuss how we can help you achieve your goals.
-            </p>
-            <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              We proudly serve clients across Zimbabwe and internationally, providing world-class technology solutions globally.
-            </p>
-          </div>
-        </ScrollAnimation>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
-          <StaggerContainer className="lg:col-span-1 space-y-6" staggerDelay={0.1}>
-            {contactInfo.map((info, index) => (
-              <StaggerItem key={index}>
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/15 transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className={`w-12 h-12 ${(info as any).isWhatsApp ? 'bg-gradient-to-r from-whatsapp to-whatsapp-dark' : 'bg-gradient-to-r from-primary to-secondary'} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                        <info.icon size={24} />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2">{info.title}</h3>
-                        {info.details.map((detail, idx) => (
-                          (info as any).isWhatsApp ? (
-                            <a key={idx} href={`https://wa.me/${(info as any).whatsappNumber || '263779822400'}`} target="_blank" rel="noopener noreferrer" className="text-whatsapp hover:text-whatsapp/80 text-sm block">{detail}</a>
-                          ) : (
-                            <p key={idx} className="text-white/70 text-sm">{detail}</p>
-                          )
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5"
+          >
+            <span className="text-sm font-semibold text-accent uppercase tracking-widest">Contact</span>
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+              Let's build what's next.
+            </h2>
+            <p className="mt-6 text-lg text-white/70 leading-relaxed">
+              Book a free consultation. We'll map your environment, identify quick wins,
+              and design a roadmap tailored to your business.
+            </p>
 
-          {/* Contact Form */}
-          <ScrollAnimation direction="right" delay={0.2} className="lg:col-span-2">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-white flex items-center space-x-2">
-                  <Send className="text-secondary" />
-                  <span>Send us a Message</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-white">Full Name *</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        required
-                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-white">Email Address *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
-                        placeholder="your.email@company.com"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-white">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
-                        placeholder="+263 xxx xxx xxx"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-white">Subject *</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        required
-                        className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary"
-                        placeholder="How can we help you?"
-                      />
-                    </div>
-                  </div>
-                  
+            <ul className="mt-10 space-y-5 text-sm">
+              <li className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-xl glass-card flex items-center justify-center flex-shrink-0">
+                  <MapPin size={16} className="text-accent" />
+                </div>
+                <div>
+                  <div className="font-semibold">Visit us</div>
+                  <div className="text-white/60 mt-0.5">13 Audley Street, Carneborne Park, Harare</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-xl glass-card flex items-center justify-center flex-shrink-0">
+                  <Phone size={16} className="text-accent" />
+                </div>
+                <div>
+                  <div className="font-semibold">Call us</div>
+                  <a href="tel:+2638677211025" className="text-white/60 hover:text-white mt-0.5 block">+263 8677 211 025</a>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-xl glass-card flex items-center justify-center flex-shrink-0">
+                  <MessageCircle size={16} className="text-whatsapp" />
+                </div>
+                <div>
+                  <div className="font-semibold">WhatsApp</div>
+                  <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white mt-0.5 block">0779 822 400</a>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-xl glass-card flex items-center justify-center flex-shrink-0">
+                  <Mail size={16} className="text-accent" />
+                </div>
+                <div>
+                  <div className="font-semibold">Email</div>
+                  <a href="mailto:sales@techflow.co.zw" className="text-white/60 hover:text-white mt-0.5 block">sales@techflow.co.zw</a>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-xl glass-card flex items-center justify-center flex-shrink-0">
+                  <Clock size={16} className="text-accent" />
+                </div>
+                <div>
+                  <div className="font-semibold">Hours</div>
+                  <div className="text-white/60 mt-0.5">Mon–Fri 09:00–18:00 · Sat 08:00–13:00</div>
+                </div>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="lg:col-span-7"
+          >
+            <div className="glass-card rounded-3xl p-6 sm:p-10">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-white">Message *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:border-secondary resize-none"
-                      placeholder="Tell us about your project or requirements..."
-                    />
+                    <Label htmlFor="name" className="text-white/80">Full name *</Label>
+                    <Input id="name" name="name" required placeholder="Your name" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold py-3 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Sending Message...
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="ml-2" size={18} />
-                      </>
-                    )}
+                  <div className="space-y-2">
+                    <Label htmlFor="company" className="text-white/80">Company</Label>
+                    <Input id="company" name="company" placeholder="Your company" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-white/80">Email *</Label>
+                    <Input id="email" name="email" type="email" required placeholder="you@company.com" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-white/80">Phone</Label>
+                    <Input id="phone" name="phone" type="tel" placeholder="+263 ..." className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="service" className="text-white/80">Service interest</Label>
+                  <Input id="service" name="service" placeholder="e.g. Managed IT, Starlink, Microsoft 365" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-white/80">Message *</Label>
+                  <Textarea id="message" name="message" required rows={5} placeholder="Tell us about your project..." className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent resize-none" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <Button type="submit" disabled={submitting} className="rounded-full bg-white text-brand-navy hover:bg-accent font-semibold px-7 h-12 flex-1">
+                    {submitting ? 'Sending...' : (<>Send message<Send size={16} className="ml-2" /></>)}
                   </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </ScrollAnimation>
+                  <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="rounded-full inline-flex items-center justify-center gap-2 border border-white/20 bg-white/5 hover:bg-white/10 px-6 h-12 text-sm font-semibold">
+                    <MessageCircle size={16} /> WhatsApp
+                  </a>
+                </div>
+              </form>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
