@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -53,6 +54,15 @@ const isps = [
 const IspReseller = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>ISP Reseller & Internet Redundancy Zimbabwe | Starlink Failover | TechFlow</title>
+        <meta name="description" content="Liquid Home, TelOne, Telco & Dark Fiber Africa with Starlink as automatic failover. Guaranteed business internet uptime in Zimbabwe — managed by TechFlow Harare." />
+        <link rel="canonical" href="https://techflow.co.zw/isp-reseller" />
+        <meta property="og:title" content="Business Internet Zimbabwe — Multi-ISP Redundancy with Starlink Failover" />
+        <meta property="og:description" content="Always online. Multi-ISP fibre with Starlink failover and SD-WAN, installed and supported across Zimbabwe." />
+        <meta property="og:url" content="https://techflow.co.zw/isp-reseller" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
 
       {/* Hero */}

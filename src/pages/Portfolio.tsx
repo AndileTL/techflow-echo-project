@@ -1,4 +1,5 @@
 
+import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ExternalLink, Code, Network, Cloud, Zap, Server, Users, Settings, Wifi, Phone, Satellite } from 'lucide-react';
@@ -120,6 +121,15 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Portfolio & Case Studies | TechFlow Technologies Zimbabwe</title>
+        <meta name="description" content="Real outcomes from Zimbabwean businesses: managed IT, Starlink failover, VoIP rollouts, Microsoft 365 migrations and more — delivered by TechFlow Harare." />
+        <link rel="canonical" href="https://techflow.co.zw/portfolio" />
+        <meta property="og:title" content="TechFlow Portfolio — IT Case Studies Zimbabwe" />
+        <meta property="og:description" content="Case studies from Zimbabwean businesses across insurance, logistics, retail and NGOs." />
+        <meta property="og:url" content="https://techflow.co.zw/portfolio" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}

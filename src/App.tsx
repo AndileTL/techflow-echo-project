@@ -19,6 +19,10 @@ import Admin from "./pages/Admin";
 import AdminThemes from "./pages/AdminThemes";
 import AdminContacts from "./pages/AdminContacts";
 import WhatsAppButton from "./components/WhatsAppButton";
+import ManagedIT from "./pages/solutions/ManagedIT";
+import CloudCybersecurity from "./pages/solutions/CloudCybersecurity";
+import ConnectivitySolution from "./pages/solutions/ConnectivitySolution";
+import DigitalTransformation from "./pages/solutions/DigitalTransformation";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +42,10 @@ const App = () => (
             <Route path="/starlink" element={<Starlink />} />
             <Route path="/isp-reseller" element={<IspReseller />} />
             <Route path="/portfolio/:projectId" element={<PortfolioDetail />} />
+            <Route path="/solutions/managed-it" element={<ManagedIT />} />
+            <Route path="/solutions/cloud-cybersecurity" element={<CloudCybersecurity />} />
+            <Route path="/solutions/connectivity" element={<ConnectivitySolution />} />
+            <Route path="/solutions/digital-transformation" element={<DigitalTransformation />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/themes" element={<AdminThemes />} />
