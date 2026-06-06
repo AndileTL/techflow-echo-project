@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -266,6 +267,15 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>IT Services Zimbabwe | Managed IT, Cloud, VoIP, Starlink | TechFlow</title>
+        <meta name="description" content="Full-service IT in Zimbabwe — managed IT, Microsoft 365, VoIP, cybersecurity, Starlink installation and ISP redundancy. Get a free consultation in Harare." />
+        <link rel="canonical" href="https://techflow.co.zw/services" />
+        <meta property="og:title" content="IT Services Zimbabwe — Managed IT, Cloud, VoIP, Starlink" />
+        <meta property="og:description" content="End-to-end technology solutions for Zimbabwean businesses. Book a consultation with TechFlow Harare." />
+        <meta property="og:url" content="https://techflow.co.zw/services" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}

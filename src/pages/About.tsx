@@ -1,4 +1,5 @@
 
+import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, Target, Heart, Shield, Award, Calendar, MapPin, Phone, Mail } from 'lucide-react';
@@ -39,6 +40,15 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>About TechFlow Technologies | IT Services Company in Harare, Zimbabwe</title>
+        <meta name="description" content="Founded in 2013, TechFlow Technologies is Zimbabwe's trusted IT services partner. 500+ clients, certified engineers in Harare, 10+ years delivering managed IT, cloud and connectivity." />
+        <link rel="canonical" href="https://techflow.co.zw/about" />
+        <meta property="og:title" content="About TechFlow Technologies | Zimbabwe IT Services" />
+        <meta property="og:description" content="Zimbabwe's trusted IT services partner since 2013. Certified engineers in Harare delivering managed IT, cloud, cybersecurity and connectivity." />
+        <meta property="og:url" content="https://techflow.co.zw/about" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}

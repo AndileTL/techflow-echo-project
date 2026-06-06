@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -97,6 +98,15 @@ const Starlink = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Starlink Installation Zimbabwe | Professional Setup & Support | TechFlow</title>
+        <meta name="description" content="Professional Starlink installation in Zimbabwe — site survey, mounting, router integration and SD-WAN failover. Residential, business and remote-site packages from Harare." />
+        <link rel="canonical" href="https://techflow.co.zw/starlink" />
+        <meta property="og:title" content="Starlink Installation Zimbabwe — Residential, Business & Remote Sites" />
+        <meta property="og:description" content="Certified Starlink installers in Zimbabwe. Fast deployment, business-grade configuration and ongoing support." />
+        <meta property="og:url" content="https://techflow.co.zw/starlink" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
       
       {/* Hero Section */}
