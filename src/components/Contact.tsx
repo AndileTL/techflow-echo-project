@@ -4,38 +4,81 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { motion } from 'framer-motion';
+import { contactSchema } from '@/lib/validation';
 
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
-  const { toast } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitting(true);
-    const fd = new FormData(e.currentTarget);
-    const data = {
-      name: fd.get('name') as string,
-      email: fd.get('email') as string,
-      phone: (fd.get('phone') as string) || null,
-      company: (fd.get('company') as string) || null,
-      service: (fd.get('service') as string) || null,
-      message: fd.get('message') as string,
+    setErrors({});
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const raw = {
+      name: (fd.get('name') as string) ?? '',
+      email: (fd.get('email') as string) ?? '',
+      phone: (fd.get('phone') as string) ?? '',
+      company: (fd.get('company') as string) ?? '',
+      service: (fd.get('service') as string) ?? '',
+      message: (fd.get('message') as string) ?? '',
     };
+    const parsed = contactSchema.safeParse(raw);
+    if (!parsed.success) {
+      const fieldErrors: Record<string, string> = {};
+      for (const issue of parsed.error.issues) {
+        const key = String(issue.path[0]);
+        if (!fieldErrors[key]) fieldErrors[key] = issue.message;
+      }
+      setErrors(fieldErrors);
+      toast.error('Please fix the highlighted fields');
+      return;
+    }
+
+    setSubmitting(true);
     try {
-      const { error } = await supabase.from('contact_submissions').insert([data]);
+      const payload = {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.phone || null,
+        company: parsed.data.company || null,
+        service: parsed.data.service || null,
+        message: parsed.data.message,
+      };
+      const { error } = await supabase.from('contact_submissions').insert([payload]);
       if (error) throw error;
-      toast({ title: 'Message sent', description: "We'll be in touch within 24 hours." });
-      (e.target as HTMLFormElement).reset();
+
+      // Build a WhatsApp follow-up link prefilled with the user's context
+      const waText = encodeURIComponent(
+        `Hi TechFlow, I'm ${parsed.data.name}${
+          parsed.data.company ? ` from ${parsed.data.company}` : ''
+        }. I just sent an enquiry${
+          parsed.data.service ? ` about ${parsed.data.service}` : ''
+        } and would like to follow up.`,
+      );
+      const waUrl = `https://wa.me/263779822400?text=${waText}`;
+
+      toast.success('Message sent — we’ll reply within 24 hours.', {
+        duration: 8000,
+        action: {
+          label: 'WhatsApp us',
+          onClick: () => window.open(waUrl, '_blank', 'noopener'),
+        },
+      });
+      form.reset();
     } catch (err) {
       console.error(err);
-      toast({ title: 'Error', description: 'Failed to send. Please try again.', variant: 'destructive' });
+      toast.error('Failed to send. Please try again or WhatsApp us directly.');
     } finally {
       setSubmitting(false);
     }
   };
+
+  const errClass = (k: string) =>
+    errors[k] ? 'border-destructive focus:border-destructive' : 'focus:border-accent';
 
   return (
     <section id="contact" className="relative py-24 lg:py-32 bg-brand-navy text-white overflow-hidden">
@@ -123,30 +166,33 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-white/80">Full name *</Label>
-                    <Input id="name" name="name" required placeholder="Your name" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                    <Input id="name" name="name" required placeholder="Your name" className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('name')}`} />
+                    {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="company" className="text-white/80">Company</Label>
-                    <Input id="company" name="company" placeholder="Your company" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                    <Input id="company" name="company" placeholder="Your company" className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('company')}`} />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-white/80">Email *</Label>
-                    <Input id="email" name="email" type="email" required placeholder="you@company.com" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                    <Input id="email" name="email" type="email" required placeholder="you@company.com" className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('email')}`} />
+                    {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-white/80">Phone</Label>
-                    <Input id="phone" name="phone" type="tel" placeholder="+263 ..." className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                    <Input id="phone" name="phone" type="tel" placeholder="+263 ..." className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('phone')}`} />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="service" className="text-white/80">Service interest</Label>
-                  <Input id="service" name="service" placeholder="e.g. Managed IT, Starlink, Microsoft 365" className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent" />
+                  <Input id="service" name="service" placeholder="e.g. Managed IT, Starlink, Microsoft 365" className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('service')}`} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-white/80">Message *</Label>
-                  <Textarea id="message" name="message" required rows={5} placeholder="Tell us about your project..." className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-accent resize-none" />
+                  <Textarea id="message" name="message" required rows={5} placeholder="Tell us about your project..." className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 resize-none ${errClass('message')}`} />
+                  {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
