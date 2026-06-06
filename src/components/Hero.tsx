@@ -11,6 +11,24 @@ const stats = [
   { value: 'Enterprise', label: 'Security' },
 ];
 
+const AnimatedStat = ({
+  count,
+  decimals,
+  suffix,
+}: {
+  count: number;
+  decimals?: number;
+  suffix?: string;
+}) => {
+  const { ref, formatted } = useAnimatedCounter(count, { decimals });
+  return (
+    <span ref={ref}>
+      {formatted}
+      {suffix}
+    </span>
+  );
+};
+
 const StatValue = ({
   count,
   decimals,
@@ -21,16 +39,12 @@ const StatValue = ({
   decimals?: number;
   suffix?: string;
   fallback: string;
-}) => {
-  if (count == null) return <>{fallback}</>;
-  const { ref, formatted } = useAnimatedCounter(count, { decimals });
-  return (
-    <span ref={ref}>
-      {formatted}
-      {suffix}
-    </span>
+}) =>
+  count == null ? (
+    <>{fallback}</>
+  ) : (
+    <AnimatedStat count={count} decimals={decimals} suffix={suffix} />
   );
-};
 
 const Hero = () => {
   const reduce = useReducedMotion();
