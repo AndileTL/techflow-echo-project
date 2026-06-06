@@ -1,15 +1,41 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useAnimatedCounter } from '@/hooks/use-animated-counter';
 
 const stats = [
-  { value: '99.9%', label: 'Uptime' },
+  { value: '99.9%', label: 'Uptime', count: 99.9, decimals: 1, suffix: '%' },
   { value: '24/7', label: 'Support' },
   { value: 'Nationwide', label: 'Coverage' },
   { value: 'Enterprise', label: 'Security' },
 ];
 
+const StatValue = ({
+  count,
+  decimals,
+  suffix,
+  fallback,
+}: {
+  count?: number;
+  decimals?: number;
+  suffix?: string;
+  fallback: string;
+}) => {
+  if (count == null) return <>{fallback}</>;
+  const { ref, formatted } = useAnimatedCounter(count, { decimals });
+  return (
+    <span ref={ref}>
+      {formatted}
+      {suffix}
+    </span>
+  );
+};
+
 const Hero = () => {
+  const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const animateOrbs = !reduce && !isMobile;
   return (
     <section
       id="home"
@@ -25,21 +51,21 @@ const Hero = () => {
         }}
       />
 
-      {/* Floating orbs */}
+      {/* Floating orbs — animated only on desktop without reduced-motion */}
       <motion.div
-        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-brand-magenta/30 blur-3xl"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-brand-magenta/30 blur-3xl will-change-transform"
+        animate={animateOrbs ? { scale: [1, 1.08, 1] } : undefined}
+        transition={animateOrbs ? { duration: 10, repeat: Infinity, ease: 'easeInOut' } : undefined}
       />
       <motion.div
-        className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/25 blur-3xl"
-        animate={{ scale: [1, 1.15, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/25 blur-3xl will-change-transform"
+        animate={animateOrbs ? { scale: [1, 1.12, 1] } : undefined}
+        transition={animateOrbs ? { duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 } : undefined}
       />
       <motion.div
-        className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full bg-accent/20 blur-3xl"
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full bg-accent/20 blur-3xl will-change-transform"
+        animate={animateOrbs ? { scale: [1, 1.15, 1] } : undefined}
+        transition={animateOrbs ? { duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 2 } : undefined}
       />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -125,7 +151,12 @@ const Hero = () => {
                 className="bg-brand-navy/40 px-6 py-6"
               >
                 <div className="font-display text-2xl sm:text-3xl font-bold bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent">
-                  {s.value}
+                  <StatValue
+                    count={s.count}
+                    decimals={s.decimals}
+                    suffix={s.suffix}
+                    fallback={s.value}
+                  />
                 </div>
                 <div className="text-xs sm:text-sm text-white/60 mt-1 uppercase tracking-wider">
                   {s.label}

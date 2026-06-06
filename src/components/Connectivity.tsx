@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
 import { Satellite, Wifi, Radio, Network, Shield, Globe2, ArrowRight } from 'lucide-react';
 
@@ -11,14 +12,18 @@ const links = [
   { icon: Shield, name: 'VPN', desc: 'Encrypted site-to-site tunnels' },
 ];
 
-const Connectivity = () => (
+const Connectivity = () => {
+  const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const heavy = !reduce && !isMobile;
+  return (
   <section className="relative py-24 lg:py-32 bg-brand-navy text-white overflow-hidden">
     {/* Background */}
     <div className="absolute inset-0">
       <motion.div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-brand-magenta/20 blur-3xl"
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-brand-magenta/20 blur-3xl will-change-transform"
+        animate={heavy ? { scale: [1, 1.08, 1] } : undefined}
+        transition={heavy ? { duration: 14, repeat: Infinity, ease: 'easeInOut' } : undefined}
       />
     </div>
 
@@ -45,8 +50,9 @@ const Connectivity = () => (
           <motion.div
             key={ring}
             className="absolute inset-0 flex items-center justify-center"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20 + ring * 10, repeat: Infinity, ease: 'linear' }}
+            animate={heavy ? { rotate: 360 } : undefined}
+            transition={heavy ? { duration: 24 + ring * 12, repeat: Infinity, ease: 'linear' } : undefined}
+            style={{ willChange: heavy ? 'transform' : undefined }}
           >
             <div
               className="rounded-full border border-white/10"
@@ -59,9 +65,9 @@ const Connectivity = () => (
         ))}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-y-1/2 -ml-[180px] sm:-ml-[210px] h-3 w-3 rounded-full bg-accent shadow-[0_0_20px_rgba(56,189,248,0.8)]"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-          style={{ transformOrigin: '180px center' }}
+          animate={heavy ? { rotate: 360 } : undefined}
+          transition={heavy ? { duration: 18, repeat: Infinity, ease: 'linear' } : undefined}
+          style={{ transformOrigin: '180px center', willChange: heavy ? 'transform' : undefined }}
         />
       </div>
 
@@ -93,6 +99,7 @@ const Connectivity = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Connectivity;
