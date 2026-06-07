@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
@@ -12,6 +13,8 @@ import { contactSchema } from '@/lib/validation';
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [customerType, setCustomerType] = useState<string>('Business Customer');
+  const [customerStatus, setCustomerStatus] = useState<string>('New Customer');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,6 +50,9 @@ const Contact = () => {
         company: parsed.data.company || null,
         service: parsed.data.service || null,
         message: parsed.data.message,
+        customer_type: customerType,
+        customer_status: customerStatus,
+        source: 'contact_form',
       };
       const { error } = await supabase.from('contact_submissions').insert([payload]);
       if (error) throw error;
@@ -61,7 +67,7 @@ const Contact = () => {
       );
       const waUrl = `https://wa.me/263779822400?text=${waText}`;
 
-      toast.success('Message sent — we’ll reply within 24 hours.', {
+      toast.success('Thank you for contacting TechFlow. Our team will get back to you shortly.', {
         duration: 8000,
         action: {
           label: 'WhatsApp us',
