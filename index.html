@@ -52,46 +52,62 @@
         "@type": "LocalBusiness",
         "name": "TechFlow Technologies",
         "alternateName": "TechFlow IT Services Zimbabwe",
+        "@id": "https://techflow.co.zw/#organization",
         "url": "https://techflow.co.zw/",
-        "logo": "https://techflow.co.zw/lovable-uploads/981d3653-41bf-4379-847b-f87f6bf2e468.png",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://techflow.co.zw/lovable-uploads/981d3653-41bf-4379-847b-f87f6bf2e468.png",
+            "width": 512,
+            "height": 512
+        },
+        "image": "https://techflow.co.zw/lovable-uploads/981d3653-41bf-4379-847b-f87f6bf2e468.png",
         "description": "TechFlow Technologies is Zimbabwe's leading provider of professional IT services and solutions, specializing in IT support, managed services, software development, cloud services, and digital transformation for businesses across Zimbabwe.",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "13 Audley Street, Carneborne Park",
             "addressLocality": "Harare",
             "addressRegion": "Harare Province",
+            "postalCode": "00263",
             "addressCountry": "ZW"
         },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+2638677211025",
-            "contactType": "customer service",
-            "areaServed": "ZW",
-            "availableLanguage": ["English"]
-        },
+        "telephone": "+2638677211025",
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "+2638677211025",
+                "contactType": "customer service",
+                "areaServed": "ZW",
+                "availableLanguage": ["English"],
+                "email": "sales@techflow.co.zw"
+            },
+            {
+                "@type": "ContactPoint",
+                "telephone": "+263779822400",
+                "contactType": "sales",
+                "areaServed": "ZW",
+                "availableLanguage": ["English"]
+            }
+        ],
         "email": "sales@techflow.co.zw",
         "priceRange": "$$",
         "sameAs": [
             "https://www.facebook.com/TechFlowZW",
             "https://www.linkedin.com/company/techflow-technologies-zw"
         ],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "87"
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday"
-            ],
-            "opens": "09:00",
-            "closes": "18:00"
-        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Saturday"],
+                "opens": "08:00",
+                "closes": "13:00"
+            }
+        ],
         "knowsAbout": [
             "IT Support Zimbabwe",
             "Managed IT Services",
