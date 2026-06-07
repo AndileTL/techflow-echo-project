@@ -1,61 +1,46 @@
-This is a multi-part rebuild follow-up. Here's the proposed plan, grouped so we can ship in one pass.
+This is a large multi-area update. Here's how I'll execute it while preserving the current premium Starlink-inspired design, animations, palette, and typography.
 
-## 1. Framer Motion performance pass
-- Audit `Hero`, `Connectivity` (orbit rings + radial blobs), `WhyTechFlow`, `Industries`, `SuccessStories`, `Ecosystem` for expensive animations.
-- Wrap heavy decorative motion in a `useReducedMotion()` + `useIsMobile()` guard so mobile and reduced-motion users get static fallbacks.
-- Replace any `animate` on `filter`/`blur` with transform/opacity only; add `will-change: transform` only where needed; downgrade infinite orbit rings to CSS `@keyframes` (cheaper than Framer re-renders) on `< md` breakpoints.
-- Animated counters: rewrite using `requestAnimationFrame` with `IntersectionObserver` (run once, skip when offscreen, throttle to 60fps cap, stop on unmount). Verify no jank by profiling in preview at 375px.
+## 1. SEO / JSON-LD / OG validation
+- Audit JSON-LD on Home, Services, About, Portfolio, Starlink, IspReseller, and 4 Solutions pages.
+- Fix common Rich Results warnings: missing `Organization` with `logo`/`url`/`contactPoint`, `WebSite` with `potentialAction` SearchAction, `Service` with `provider`+`areaServed`, `FAQPage` with proper Q/A pairs, `BreadcrumbList` with absolute URLs.
+- Ensure every page has unique `<title>`, `<meta description>`, canonical, `og:title/description/url/image/type`, `twitter:card`. Add a shared OG image (`/og-image.png`) and reference absolute URLs.
+- Update `index.html` sitewide Organization JSON-LD with logo URL, sameAs (socials), and contactPoint (+263 86 77 211 025, sales@techflow.co.zw).
 
-## 2. SEO metadata expansion
-- Sitewide defaults already live in `index.html`; keep Organization JSON-LD there.
-- Per-route `<Helmet>` blocks (title, description, canonical, og:*, JSON-LD) for: `/` (already partial — keep), `/services`, `/about`, `/portfolio`, `/starlink`, `/isp-reseller`, plus the four new Solutions pages below.
-- Zimbabwe keyword targeting: "Best IT Service Provider in Zimbabwe", "Managed IT Harare", "Microsoft 365 Zimbabwe", "Starlink Installation Zimbabwe", "Business Internet Harare", "Cybersecurity Zimbabwe", "VoIP Zimbabwe".
-- JSON-LD: `LocalBusiness` on `/` and `/about`; `Service` schema on each Solutions page; `BreadcrumbList` on inner pages; `FAQPage` already on `/`.
-- Update `public/sitemap.xml` with the new Solutions routes.
+## 2. Positioning: Home + Business + Enterprise + ISPs + Corporate
+- Update Hero headline/subcopy, WhyTechFlow, Industries, SuccessStories, Footer tagline, and Solutions hero copy to consistently say "homes, businesses, enterprises, ISPs, and organizations across Zimbabwe."
+- Industries grid: add "Home & Residential" tile alongside existing sectors.
+- Services page: add a Home Services vs Business Services tabbed/grouped view.
 
-## 3. Responsive header / hamburger polish
-- Current `Header.tsx` already has a mobile menu; tighten it:
-  - Lock body scroll while open.
-  - Animate panel with `motion.div` (transform-only) to avoid layout shift.
-  - Ensure logo + CTA fit at 375px (shrink "Book Consultation" → icon + short label on `sm`).
-  - Add `min-h-16` to header to prevent CLS as the scrolled state toggles.
-  - Verify sticky behaviour at 375px and 768px in preview.
+## 3. WhatsApp Qualification Flow
+- Replace single-button `WhatsAppButton.tsx` with a multi-step dialog (shadcn `Dialog`):
+  Step 1 Customer Type → Step 2 New/Existing → Step 3 multi-select services (Home set vs Business set based on Step 1) → Step 4 contact details (zod-validated) → Step 5 generates formatted message, stores lead in DB, then opens `https://wa.me/263779822400?text=...`.
+- Floating bubble keeps current style; opens the flow instead of jumping straight to WA.
 
-## 4. Contact form backend
-- Form already inserts into `contact_submissions` table via Supabase — keep that as source of truth.
-- Add an Edge Function `send-contact-notification` that:
-  - Validates payload with zod.
-  - Inserts to DB (or runs after insert via trigger? Simpler: call function from client after insert succeeds).
-  - Sends an email notification to `sales@techflow.co.zw` using Lovable's built-in transactional email (requires email domain setup — will check status first; if no domain configured we'll surface the setup dialog).
-- WhatsApp follow-up: on successful submit, show a toast with a "Continue on WhatsApp" button that opens `wa.me/263779822400` pre-filled with the user's name + service interest (encodeURIComponent).
-- Add client-side zod validation on all fields with inline errors.
+## 4. Backend for Contact + Consultation + WhatsApp leads
+- Extend existing `contact_submissions` table with `customer_type`, `customer_status`, `source` (`contact_form` | `consultation` | `whatsapp_flow`), `services` (text[]). Migration adds columns + GRANTs already in place.
+- Edge Function `send-lead-notification`: zod-validates payload, inserts row, sends branded HTML email to `sales@techflow.co.zw` via Lovable Emails (will run `setup_email_infra` + `scaffold_transactional_email` after checking domain status; if no domain configured, I'll prompt the user with the email setup dialog before deploying).
+- Hook `Contact.tsx` and the WhatsApp flow to invoke this function; success toast: "Thank you for contacting TechFlow. Our team will get back to you shortly."
 
-## 5. New Solutions pages
-Create four routes off the existing `/services` parent, reusing the existing site chrome (Header/Footer/WhatsAppButton):
-- `/solutions/managed-it` — Managed IT
-- `/solutions/cloud-cybersecurity` — Cloud & Cybersecurity
-- `/solutions/connectivity` — Connectivity (links to existing `/isp-reseller` + `/starlink` deep dives)
-- `/solutions/digital-transformation` — Digital Transformation
+## 5. Ecosystem partner logos
+- Replace text grid in `Ecosystem.tsx` with an animated logo wall (marquee + hover lift) for: Starlink, Microsoft, MikroTik, Ubiquiti, Cisco, Hikvision, Dahua, ZKTeco, Fortinet, VMware, Sophos, Veeam, Cloudflare.
+- Use brand SVG wordmarks (simple inline SVGs or text-as-logo fallbacks in brand fonts) styled with the existing glass/card tokens — no new color tokens, monochrome with hover color reveal.
+- New supporting copy as provided.
 
-Shared `SolutionPageLayout` component:
-- Hero with gradient, headline, sub, dual CTA (Book Consultation / WhatsApp).
-- "What's included" feature grid.
-- Outcomes / KPIs strip.
-- Industries served chips.
-- FAQ accordion (3–5 Qs, fed into `FAQPage` JSON-LD).
-- CTA band → `/services#consultation-form`.
+## 6. Connectivity section video
+- Upload `Showcase_as_well_how_we_create.mp4` via `lovable-assets` and embed in `Connectivity.tsx` as a glassmorphism-framed `<video autoplay muted loop playsinline>` inside the existing layout (placed below the orbital graphic, above the link grid) — preserves orbit animations and gradients.
 
-Update `Header.tsx` nav so "Solutions" links to `/solutions/managed-it` (or a hub) and add a desktop dropdown listing all four. On mobile, expand inline.
+## 7. Lead Management Dashboard
+- Extend `/admin/contacts` (existing `AdminContacts.tsx`) into a unified leads dashboard:
+  - Tabs: All / Contact Form / Consultation / WhatsApp.
+  - Search (name/email/company), filters (status, source, customer type, date range), CSV export.
+  - Status workflow: New, Contacted, In Progress, Won, Closed (update existing status enum in UI; DB column already `text`).
+- Protected by existing `useAuth` + `isAdmin` check.
 
-## Technical notes
-- Files touched: `src/components/Header.tsx`, `src/components/Hero.tsx`, `src/components/Connectivity.tsx`, `src/components/WhyTechFlow.tsx`, `src/components/Industries.tsx`, `src/components/SuccessStories.tsx`, `src/components/Contact.tsx`, `src/App.tsx`, `index.html`, `public/sitemap.xml`.
-- Files created: `src/components/SolutionPageLayout.tsx`, `src/pages/solutions/ManagedIT.tsx`, `CloudCybersecurity.tsx`, `Connectivity.tsx`, `DigitalTransformation.tsx`, `src/hooks/use-animated-counter.ts`, `src/lib/validation.ts` (zod schemas), `supabase/functions/send-contact-notification/index.ts`.
-- Email: will call `email_domain--check_email_domain_status` first. If no domain configured, I'll surface the setup dialog and keep the DB insert + WhatsApp flow working in the meantime (notification email queued once domain is live).
-- No DB schema changes needed — `contact_submissions` already exists.
+## Technical details
+- Files to edit: `index.html`, `src/components/{Hero,WhyTechFlow,Industries,SuccessStories,Connectivity,Ecosystem,Footer,Contact,WhatsAppButton}.tsx`, `src/pages/{Index,Services,About,Portfolio,Starlink,IspReseller,AdminContacts}.tsx`, `src/pages/solutions/*.tsx`.
+- New: `src/components/WhatsAppLeadFlow.tsx`, `src/components/PartnerLogos.tsx`, `supabase/functions/send-lead-notification/index.ts`, asset pointer for the video.
+- Migration: add `customer_type`, `customer_status`, `source`, `services text[]` to `contact_submissions`.
+- Email: requires Lovable Emails domain. Will check status first; if missing, surface the email setup dialog and pause that sub-task until configured.
 
-## Out of scope
-- Redesigning existing pages beyond what's needed for the new nav.
-- Switching auth/role logic.
-- Custom domain setup.
-
-Approve and I'll ship it.
+## Out of scope confirmation
+Anything you'd like to drop or defer (e.g., the lead dashboard CSV export, or the email step if you don't want to configure a sender domain right now)?

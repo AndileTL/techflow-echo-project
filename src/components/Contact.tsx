@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
@@ -12,6 +13,8 @@ import { contactSchema } from '@/lib/validation';
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [customerType, setCustomerType] = useState<string>('Business Customer');
+  const [customerStatus, setCustomerStatus] = useState<string>('New Customer');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,6 +50,9 @@ const Contact = () => {
         company: parsed.data.company || null,
         service: parsed.data.service || null,
         message: parsed.data.message,
+        customer_type: customerType,
+        customer_status: customerStatus,
+        source: 'contact_form',
       };
       const { error } = await supabase.from('contact_submissions').insert([payload]);
       if (error) throw error;
@@ -61,7 +67,7 @@ const Contact = () => {
       );
       const waUrl = `https://wa.me/263779822400?text=${waText}`;
 
-      toast.success('Message sent — we’ll reply within 24 hours.', {
+      toast.success('Thank you for contacting TechFlow. Our team will get back to you shortly.', {
         duration: 8000,
         action: {
           label: 'WhatsApp us',
@@ -188,6 +194,28 @@ const Contact = () => {
                 <div className="space-y-2">
                   <Label htmlFor="service" className="text-white/80">Service interest</Label>
                   <Input id="service" name="service" placeholder="e.g. Managed IT, Starlink, Microsoft 365" className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('service')}`} />
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-white/80">Customer type</Label>
+                    <Select value={customerType} onValueChange={setCustomerType}>
+                      <SelectTrigger className="bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Home Customer">Home Customer</SelectItem>
+                        <SelectItem value="Business Customer">Business Customer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-white/80">Status</Label>
+                    <Select value={customerStatus} onValueChange={setCustomerStatus}>
+                      <SelectTrigger className="bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="New Customer">New Customer</SelectItem>
+                        <SelectItem value="Existing Customer">Existing Customer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-white/80">Message *</Label>

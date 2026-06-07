@@ -1,9 +1,24 @@
 import { motion } from 'framer-motion';
+import {
+  Satellite, Cloud, Wifi, Network, Camera, Video, Fingerprint,
+  Shield, Server, HardDrive, Cloudy, Building2, Cpu,
+} from 'lucide-react';
 
 const partners = [
-  'Microsoft 365', 'Azure', 'Starlink', 'MikroTik',
-  'Ubiquiti', 'Sophos', 'Zabbix', 'VMware',
-  'Nextcloud', '3CX', 'Veeam', 'Fortinet',
+  { name: 'Starlink', icon: Satellite },
+  { name: 'Microsoft', icon: Cloud },
+  { name: 'MikroTik', icon: Network },
+  { name: 'Ubiquiti', icon: Wifi },
+  { name: 'Cisco', icon: Cpu },
+  { name: 'Hikvision', icon: Camera },
+  { name: 'Dahua', icon: Video },
+  { name: 'ZKTeco', icon: Fingerprint },
+  { name: 'Fortinet', icon: Shield },
+  { name: 'VMware', icon: Server },
+  { name: 'Sophos', icon: Shield },
+  { name: 'Veeam', icon: HardDrive },
+  { name: 'Cloudflare', icon: Cloudy },
+  { name: 'Azure', icon: Building2 },
 ];
 
 const Ecosystem = () => (
@@ -15,27 +30,34 @@ const Ecosystem = () => (
           A best-in-class <span className="gradient-text">technology ecosystem</span>.
         </h2>
         <p className="mt-6 text-lg text-muted-foreground">
-          We integrate and operate the platforms enterprise teams trust — so you get proven
-          technology, certified expertise, and one accountable partner.
+          TechFlow partners with globally recognised technology leaders to deliver secure,
+          reliable and scalable solutions for <span className="text-foreground font-medium">homes,
+          businesses and enterprises</span> across Africa.
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+      <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-px bg-border rounded-3xl overflow-hidden border border-border">
         {partners.map((p, i) => (
           <motion.div
-            key={p}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            key={p.name}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.04 }}
-            className="group bg-card flex items-center justify-center p-8 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/5 transition-all duration-500"
+            transition={{ delay: i * 0.03 }}
+            whileHover={{ y: -3 }}
+            className="group bg-card flex flex-col items-center justify-center gap-3 p-6 sm:p-8 hover:bg-gradient-to-br hover:from-primary/5 hover:to-secondary/5 transition-all duration-500"
           >
-            <span className="font-display text-base sm:text-lg font-semibold text-muted-foreground group-hover:text-foreground transition-colors text-center">
-              {p}
+            <p.icon className="h-7 w-7 text-muted-foreground group-hover:text-primary transition-colors" />
+            <span className="font-display text-sm sm:text-base font-semibold text-muted-foreground group-hover:text-foreground transition-colors text-center">
+              {p.name}
             </span>
           </motion.div>
         ))}
       </div>
+
+      <p className="mt-10 text-center text-sm text-muted-foreground">
+        Certified engineers · One accountable partner · End-to-end design, deployment and 24/7 support
+      </p>
     </div>
   </section>
 );
