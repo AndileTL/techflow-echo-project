@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
 import { Satellite, Wifi, Radio, Network, Shield, Globe2, ArrowRight } from 'lucide-react';
+import showcaseVideo from '@/assets/techflow-showcase.mp4.asset.json';
 
 const links = [
   { icon: Satellite, name: 'Starlink', desc: 'Low-orbit satellite for anywhere coverage' },
@@ -70,6 +71,36 @@ const Connectivity = () => {
           style={{ transformOrigin: '180px center', willChange: heavy ? 'transform' : undefined }}
         />
       </div>
+
+      {/* Embedded showcase video — glassmorphism frame */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.8 }}
+        className="relative mx-auto mt-20 max-w-4xl"
+      >
+        <div className="absolute -inset-4 bg-gradient-to-br from-brand-magenta/30 via-secondary/20 to-accent/30 blur-2xl rounded-[2rem] opacity-60" />
+        <div className="relative glass-card rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <div className="aspect-video bg-brand-navy/60">
+            <video
+              src={showcaseVideo.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent px-6 py-4 sm:px-8 sm:py-5 pointer-events-none">
+            <div className="text-xs uppercase tracking-widest text-accent font-semibold">In the field</div>
+            <div className="font-display text-base sm:text-lg text-white/90 mt-1">
+              Starlink deployments, enterprise networks and CCTV — engineered by TechFlow.
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       <div className="mt-16 grid grid-cols-2 lg:grid-cols-3 gap-4">
         {links.map((l, i) => (
