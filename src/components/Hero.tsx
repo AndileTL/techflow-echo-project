@@ -123,9 +123,9 @@ const Hero = () => {
             transition={{ delay: 0.45, duration: 0.8 }}
             className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto text-pretty leading-relaxed"
           >
-            TechFlow delivers managed IT, cloud infrastructure, cybersecurity,
-            connectivity, and digital transformation solutions that keep
-            businesses connected, secure, and productive.
+            TechFlow delivers enterprise-grade connectivity, cybersecurity, networking,
+            CCTV, cloud and managed IT solutions for <span className="text-white">homes,
+            small businesses, enterprises, ISPs and corporate organisations</span> across Zimbabwe.
           </motion.p>
 
           <motion.div

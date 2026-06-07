@@ -18,8 +18,8 @@ const Footer = () => {
               <span className="font-display text-xl font-bold">TechFlow Technologies</span>
             </Link>
             <p className="mt-5 text-white/70 leading-relaxed max-w-md">
-              Smarter technology, faster connectivity, built for Africa. Managed IT,
-              cloud, cybersecurity and connectivity solutions from Harare to the region.
+              Enterprise-grade connectivity, cybersecurity, CCTV, cloud and managed IT for
+              homes, small businesses, enterprises, ISPs and organisations across Zimbabwe.
             </p>
             <div className="mt-6 flex gap-3">
               <a href="https://www.linkedin.com/company/techflow-technologies-zw" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">

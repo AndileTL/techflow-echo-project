@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 import {
-  Building2, Banknote, GraduationCap, HeartPulse,
-  Factory, ShoppingBag, HandHeart, Landmark,
+  Home, Building2, Banknote, GraduationCap, HeartPulse,
+  Factory, ShoppingBag, HandHeart, Landmark, Wifi, Briefcase,
 } from 'lucide-react';
 
 const industries = [
+  { icon: Home, name: 'Home & Residential' },
+  { icon: Briefcase, name: 'Small Business' },
   { icon: Building2, name: 'Real Estate' },
   { icon: Banknote, name: 'Financial Services' },
   { icon: GraduationCap, name: 'Education' },
   { icon: HeartPulse, name: 'Healthcare' },
   { icon: Factory, name: 'Manufacturing' },
   { icon: ShoppingBag, name: 'Retail' },
+  { icon: Wifi, name: 'ISPs & Carriers' },
   { icon: HandHeart, name: 'NGOs' },
   { icon: Landmark, name: 'Government' },
 ];
@@ -24,8 +27,8 @@ const Industries = () => (
           Tailored technology for <span className="gradient-text">every sector</span>.
         </h2>
         <p className="mt-6 text-lg text-muted-foreground">
-          From banks and hospitals to schools and mines — we engineer secure, reliable IT for
-          businesses of every shape across Southern Africa.
+          From homes and small businesses to enterprises, ISPs and government — we engineer
+          secure, reliable technology for every customer across Zimbabwe and Southern Africa.
         </p>
       </div>
 
