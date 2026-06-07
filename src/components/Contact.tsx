@@ -195,6 +195,28 @@ const Contact = () => {
                   <Label htmlFor="service" className="text-white/80">Service interest</Label>
                   <Input id="service" name="service" placeholder="e.g. Managed IT, Starlink, Microsoft 365" className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 ${errClass('service')}`} />
                 </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-white/80">Customer type</Label>
+                    <Select value={customerType} onValueChange={setCustomerType}>
+                      <SelectTrigger className="bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Home Customer">Home Customer</SelectItem>
+                        <SelectItem value="Business Customer">Business Customer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-white/80">Status</Label>
+                    <Select value={customerStatus} onValueChange={setCustomerStatus}>
+                      <SelectTrigger className="bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="New Customer">New Customer</SelectItem>
+                        <SelectItem value="Existing Customer">Existing Customer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-white/80">Message *</Label>
                   <Textarea id="message" name="message" required rows={5} placeholder="Tell us about your project..." className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 resize-none ${errClass('message')}`} />
