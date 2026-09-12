@@ -82,7 +82,7 @@ const WhatsAppLeadFlow = ({ open, onOpenChange }: Props) => {
         source: 'whatsapp_flow',
       }]);
 
-      const url = `https://wa.me/263779822400?text=${encodeURIComponent(message)}`;
+      const url = `https://wa.me/263716881185?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank', 'noopener');
       toast.success('Thank you — opening WhatsApp now.');
       close();

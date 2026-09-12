@@ -28,7 +28,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/TechFlowZW" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
                 <Facebook size={16} />
               </a>
-              <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+              <a href="https://wa.me/263716881185" target="_blank" rel="noopener noreferrer" className="h-9 w-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
                 <MessageCircle size={16} />
               </a>
             </div>
@@ -51,7 +51,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-white/70">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-accent mt-0.5 flex-shrink-0" />
-                <span>13 Audley Street, Carneborne Park, Harare, Zimbabwe</span>
+                <span>13 Audley Street, Cranborne Park, Harare, Zimbabwe</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-accent flex-shrink-0" />
@@ -59,7 +59,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <MessageCircle size={16} className="text-whatsapp flex-shrink-0" />
-                <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp 0779 822 400</a>
+                <a href="https://wa.me/263716881185" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp 0716 881 185</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-accent flex-shrink-0" />
