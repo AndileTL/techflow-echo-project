@@ -4,17 +4,19 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import logo from '@/assets/techflow-logo.png';
 
 const solutionsItems = [
+  { name: 'All Solutions', href: '/solutions' },
   { name: 'Managed IT', href: '/solutions/managed-it' },
   { name: 'Cloud & Cybersecurity', href: '/solutions/cloud-cybersecurity' },
   { name: 'Connectivity', href: '/solutions/connectivity' },
   { name: 'Digital Transformation', href: '/solutions/digital-transformation' },
+  { name: 'Contact Center Operations', href: '/solutions/contact-center' },
 ];
 
 const navItems = [
   { name: 'Home', href: '/' },
-  { name: 'Solutions', href: '/services', dropdown: solutionsItems },
-  { name: 'Connectivity', href: '/isp-reseller' },
-  { name: 'Success Stories', href: '/portfolio' },
+  { name: 'Solutions', href: '/solutions', dropdown: solutionsItems },
+  { name: 'Connectivity', href: '/connectivity' },
+  { name: 'Success Stories', href: '/success-stories' },
   { name: 'About', href: '/about' },
 ];
 
@@ -127,14 +129,14 @@ const Header = () => {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="text-sm font-medium text-white/80 hover:text-white transition-colors"
             >
               Contact
-            </a>
+            </Link>
             <Link
-              to="/services#consultation-form"
+              to="/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-white text-brand-navy px-5 py-2.5 text-sm font-semibold shadow-lg hover:shadow-xl hover:bg-accent hover:text-brand-navy transition-all duration-300 whitespace-nowrap"
             >
               <span className="hidden xl:inline">Book Consultation</span>
@@ -183,15 +185,15 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setOpen(false)}
                 className="px-4 py-3 rounded-lg text-base font-medium text-white/80 hover:bg-white/5"
               >
                 Contact
-              </a>
+              </Link>
               <Link
-                to="/services#consultation-form"
+                to="/contact"
                 className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-navy px-5 py-3 text-sm font-semibold"
               >
                 Book Consultation
