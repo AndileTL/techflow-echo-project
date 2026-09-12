@@ -29,7 +29,7 @@ const Index = () => {
         "name": "Where is TechFlow Technologies located?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TechFlow Technologies is located at 13 Audley Street, Carneborne Park, Harare, Zimbabwe."
+          "text": "TechFlow Technologies is located at 13 Audley Street, Cranborne Park, Harare, Zimbabwe."
         }
       },
       {

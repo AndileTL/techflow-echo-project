@@ -65,7 +65,7 @@ const Contact = () => {
           parsed.data.service ? ` about ${parsed.data.service}` : ''
         } and would like to follow up.`,
       );
-      const waUrl = `https://wa.me/263779822400?text=${waText}`;
+      const waUrl = `https://wa.me/263716881185?text=${waText}`;
 
       toast.success('Thank you for contacting TechFlow. Our team will get back to you shortly.', {
         duration: 8000,
@@ -118,7 +118,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="font-semibold">Visit us</div>
-                  <div className="text-white/60 mt-0.5">13 Audley Street, Carneborne Park, Harare</div>
+                  <div className="text-white/60 mt-0.5">13 Audley Street, Cranborne Park, Harare</div>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -136,7 +136,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="font-semibold">WhatsApp</div>
-                  <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white mt-0.5 block">0779 822 400</a>
+                  <a href="https://wa.me/263716881185" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white mt-0.5 block">0716 881 185</a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -227,7 +227,7 @@ const Contact = () => {
                   <Button type="submit" disabled={submitting} className="rounded-full bg-white text-brand-navy hover:bg-accent font-semibold px-7 h-12 flex-1">
                     {submitting ? 'Sending...' : (<>Send message<Send size={16} className="ml-2" /></>)}
                   </Button>
-                  <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer" className="rounded-full inline-flex items-center justify-center gap-2 border border-white/20 bg-white/5 hover:bg-white/10 px-6 h-12 text-sm font-semibold">
+                  <a href="https://wa.me/263716881185" target="_blank" rel="noopener noreferrer" className="rounded-full inline-flex items-center justify-center gap-2 border border-white/20 bg-white/5 hover:bg-white/10 px-6 h-12 text-sm font-semibold">
                     <MessageCircle size={16} /> WhatsApp
                   </a>
                 </div>

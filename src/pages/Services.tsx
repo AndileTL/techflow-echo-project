@@ -445,8 +445,8 @@ const Services = () => {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-2 border-white/30 bg-white/10 text-white hover:bg-white/20" asChild>
-                  <a href="https://wa.me/263779822400" target="_blank" rel="noopener noreferrer">
-                    WhatsApp 0779 822 400
+                  <a href="https://wa.me/263716881185" target="_blank" rel="noopener noreferrer">
+                    WhatsApp 0716 881 185
                   </a>
                 </Button>
               </div>
