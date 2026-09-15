@@ -23,6 +23,9 @@ import ManagedIT from "./pages/solutions/ManagedIT";
 import CloudCybersecurity from "./pages/solutions/CloudCybersecurity";
 import ConnectivitySolution from "./pages/solutions/ConnectivitySolution";
 import DigitalTransformation from "./pages/solutions/DigitalTransformation";
+import ContactCenter from "./pages/solutions/ContactCenter";
+import SolutionsLanding from "./pages/SolutionsLanding";
+import ContactPage from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
