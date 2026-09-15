@@ -213,7 +213,7 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <Link to={`/portfolio/${project.id}`}>
+                  <Link to={`/success-stories/${project.id}`}>
                     <Button variant="outline" className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-500">
                       View Details
                       <ExternalLink className="ml-2" size={16} />
