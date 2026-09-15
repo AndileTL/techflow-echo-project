@@ -10,7 +10,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { motion } from 'framer-motion';
 import { contactSchema } from '@/lib/validation';
 
-const Contact = () => {
+const Contact = ({ asH1 = false }: { asH1?: boolean }) => {
+  const Heading = (asH1 ? 'h1' : 'h2') as 'h1' | 'h2';
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [customerType, setCustomerType] = useState<string>('Business Customer');
