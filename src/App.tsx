@@ -54,6 +54,7 @@ const App = () => (
             <Route path="/solutions/cloud-cybersecurity" element={<CloudCybersecurity />} />
             <Route path="/solutions/connectivity" element={<ConnectivitySolution />} />
             <Route path="/solutions/digital-transformation" element={<DigitalTransformation />} />
+            <Route path="/solutions/contact-center" element={<ContactCenter />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/themes" element={<AdminThemes />} />
