@@ -199,6 +199,62 @@ const SolutionPageLayout = ({
         </div>
       </section>
 
+      {/* How it works */}
+      {process && process.length > 0 && (
+        <section className="py-24 bg-brand-navy text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-25">
+            <div className="absolute top-0 left-1/4 w-[420px] h-[420px] rounded-full bg-brand-magenta/30 blur-3xl" />
+            <div className="absolute bottom-0 right-10 w-[360px] h-[360px] rounded-full bg-secondary/30 blur-3xl" />
+          </div>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="max-w-3xl">
+              <span className="text-sm font-semibold text-accent uppercase tracking-widest">How it works</span>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold tracking-tight text-balance">
+                A clear path from first call to steady state.
+              </h2>
+            </div>
+            <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {process.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ delay: i * 0.06 }}
+                  className="rounded-2xl glass-effect p-6"
+                >
+                  <div className="font-display text-sm font-bold text-accent">0{i + 1}</div>
+                  <h3 className="mt-3 font-display text-lg font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{p.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Who it's for */}
+      {whoFor && whoFor.length > 0 && (
+        <section className="py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-sm font-semibold text-primary uppercase tracking-widest">Who it's for</span>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold tracking-tight">
+                Built for teams like yours.
+              </h2>
+            </div>
+            <ul className="mt-10 grid sm:grid-cols-2 gap-4 max-w-4xl">
+              {whoFor.map((w) => (
+                <li key={w} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5">
+                  <CheckCircle2 size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground leading-relaxed">{w}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       {/* Industries */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
