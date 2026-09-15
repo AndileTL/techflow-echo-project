@@ -61,7 +61,7 @@ const SuccessStories = () => (
             transition={{ delay: i * 0.08 }}
           >
             <Link
-              to={`/portfolio/${s.slug}`}
+              to={`/success-stories/${s.slug}`}
               className="group relative block rounded-3xl bg-card border border-border p-8 lg:p-10 overflow-hidden h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
             >
               <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${s.color}`} />
