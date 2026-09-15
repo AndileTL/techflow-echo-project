@@ -44,7 +44,7 @@ const SuccessStories = () => (
           </h2>
         </div>
         <Link
-          to="/portfolio"
+          to="/success-stories"
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-brand-magenta transition-colors"
         >
           View all stories <ArrowUpRight size={16} />
