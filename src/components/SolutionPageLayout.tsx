@@ -30,6 +30,8 @@ export interface SolutionPageProps {
   outcomes: { value: string; label: string }[];
   industries: string[];
   faqs: SolutionFAQ[];
+  process?: { title: string; desc: string }[];
+  whoFor?: string[];
 }
 
 const SolutionPageLayout = ({
