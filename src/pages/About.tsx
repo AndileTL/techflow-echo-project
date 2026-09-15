@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Users, Target, Heart, Shield, Award, Calendar, MapPin, Phone, Mail } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CtaBanner from '@/components/CtaBanner';
 
 const About = () => {
   const values = [
@@ -293,6 +294,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <CtaBanner />
 
       <Footer />
     </div>

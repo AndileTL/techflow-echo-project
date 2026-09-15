@@ -6,6 +6,7 @@ import { ExternalLink, Code, Network, Cloud, Zap, Server, Users, Settings, Wifi,
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CtaBanner from '@/components/CtaBanner';
 import { motion } from 'framer-motion';
 import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
@@ -286,6 +287,8 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+
+      <CtaBanner />
 
       <Footer />
     </div>

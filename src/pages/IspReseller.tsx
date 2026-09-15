@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CtaBanner from '@/components/CtaBanner';
 import {
   ScrollAnimation,
   StaggerContainer,
@@ -413,6 +414,8 @@ const IspReseller = () => {
           </div>
         </div>
       </section>
+
+      <CtaBanner />
 
       <Footer />
     </div>
