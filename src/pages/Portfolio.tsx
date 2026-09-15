@@ -6,6 +6,7 @@ import { ExternalLink, Code, Network, Cloud, Zap, Server, Users, Settings, Wifi,
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CtaBanner from '@/components/CtaBanner';
 import { motion } from 'framer-motion';
 import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
@@ -122,12 +123,12 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Portfolio & Case Studies | TechFlow Technologies Zimbabwe</title>
+        <title>Success Stories | IT Case Studies in Zimbabwe | TechFlow</title>
         <meta name="description" content="Real outcomes from Zimbabwean businesses: managed IT, Starlink failover, VoIP rollouts, Microsoft 365 migrations and more — delivered by TechFlow Harare." />
-        <link rel="canonical" href="https://techflow.co.zw/portfolio" />
-        <meta property="og:title" content="TechFlow Portfolio — IT Case Studies Zimbabwe" />
+        <link rel="canonical" href="https://techflow.co.zw/success-stories" />
+        <meta property="og:title" content="TechFlow Success Stories — IT Case Studies Zimbabwe" />
         <meta property="og:description" content="Case studies from Zimbabwean businesses across insurance, logistics, retail and NGOs." />
-        <meta property="og:url" content="https://techflow.co.zw/portfolio" />
+        <meta property="og:url" content="https://techflow.co.zw/success-stories" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />
@@ -148,10 +149,10 @@ const Portfolio = () => {
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent">
-            Our Portfolio
+            Success Stories
           </h1>
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-            Discover how we've helped businesses across Zimbabwe and internationally transform their operations with innovative technology solutions.
+            Outcomes that move business forward — how homes, businesses and enterprises across Zimbabwe stay online, secure and productive with TechFlow.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
@@ -213,7 +214,7 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <Link to={`/portfolio/${project.id}`}>
+                  <Link to={`/success-stories/${project.id}`}>
                     <Button variant="outline" className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-500">
                       View Details
                       <ExternalLink className="ml-2" size={16} />
@@ -286,6 +287,8 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+
+      <CtaBanner />
 
       <Footer />
     </div>

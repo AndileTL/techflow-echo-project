@@ -9,6 +9,7 @@ import SuccessStories from '@/components/SuccessStories';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import CtaBanner from '@/components/CtaBanner';
 import TechFlowAIChatbot from '@/components/TechFlowAIChatbot';
 
 const Index = () => {
@@ -60,6 +61,7 @@ const Index = () => {
       <SuccessStories />
       <About />
       <Contact />
+      <CtaBanner />
       <Footer />
       <TechFlowAIChatbot />
     </div>

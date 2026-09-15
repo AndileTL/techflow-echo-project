@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { ArrowLeft, Check, Satellite, Wifi, Shield, Clock, Phone, Mail, MapPin, Zap, Users, Wrench } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CtaBanner from '@/components/CtaBanner';
 
 const Starlink = () => {
   const pricingPackages = [
@@ -297,6 +298,8 @@ const Starlink = () => {
           </div>
         </div>
       </section>
+
+      <CtaBanner />
 
       <Footer />
     </div>

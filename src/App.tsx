@@ -23,6 +23,9 @@ import ManagedIT from "./pages/solutions/ManagedIT";
 import CloudCybersecurity from "./pages/solutions/CloudCybersecurity";
 import ConnectivitySolution from "./pages/solutions/ConnectivitySolution";
 import DigitalTransformation from "./pages/solutions/DigitalTransformation";
+import ContactCenter from "./pages/solutions/ContactCenter";
+import SolutionsLanding from "./pages/SolutionsLanding";
+import ContactPage from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +39,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/solutions" element={<SolutionsLanding />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/connectivity" element={<ConnectivitySolution />} />
+            <Route path="/success-stories" element={<Portfolio />} />
+            <Route path="/success-stories/:projectId" element={<PortfolioDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/service/:serviceId" element={<ServiceDetail />} />
@@ -46,6 +54,7 @@ const App = () => (
             <Route path="/solutions/cloud-cybersecurity" element={<CloudCybersecurity />} />
             <Route path="/solutions/connectivity" element={<ConnectivitySolution />} />
             <Route path="/solutions/digital-transformation" element={<DigitalTransformation />} />
+            <Route path="/solutions/contact-center" element={<ContactCenter />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/themes" element={<AdminThemes />} />

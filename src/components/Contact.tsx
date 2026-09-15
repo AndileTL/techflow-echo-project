@@ -10,7 +10,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { motion } from 'framer-motion';
 import { contactSchema } from '@/lib/validation';
 
-const Contact = () => {
+const Contact = ({ asH1 = false }: { asH1?: boolean }) => {
+  const Heading = (asH1 ? 'h1' : 'h2') as 'h1' | 'h2';
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [customerType, setCustomerType] = useState<string>('Business Customer');
@@ -103,9 +104,9 @@ const Contact = () => {
             className="lg:col-span-5"
           >
             <span className="text-sm font-semibold text-accent uppercase tracking-widest">Contact</span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Let's build what's next.
-            </h2>
+            <Heading className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+              Let's talk about your technology.
+            </Heading>
             <p className="mt-6 text-lg text-white/70 leading-relaxed">
               Book a free consultation. We'll map your environment, identify quick wins,
               and design a roadmap tailored to your business.
