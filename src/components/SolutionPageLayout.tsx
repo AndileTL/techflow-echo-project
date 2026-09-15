@@ -47,6 +47,8 @@ const SolutionPageLayout = ({
   outcomes,
   industries,
   faqs,
+  process,
+  whoFor,
 }: SolutionPageProps) => {
   const url = `https://techflow.co.zw/solutions/${slug}`;
 
