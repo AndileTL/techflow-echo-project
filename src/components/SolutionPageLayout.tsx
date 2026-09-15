@@ -138,7 +138,7 @@ const SolutionPageLayout = ({
             <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">{intro}</p>
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
               <Link
-                to="/services#consultation-form"
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-navy px-7 py-3.5 text-base font-semibold shadow-xl hover:bg-accent transition-all"
               >
                 Book Consultation <ArrowRight size={18} />
@@ -322,7 +322,7 @@ const SolutionPageLayout = ({
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                to="/services#consultation-form"
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-navy px-7 py-3.5 text-base font-semibold hover:bg-accent transition-colors"
               >
                 Book Consultation <ArrowRight size={18} />
