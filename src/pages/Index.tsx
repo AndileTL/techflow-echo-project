@@ -60,6 +60,7 @@ const Index = () => {
       <SuccessStories />
       <About />
       <Contact />
+      <CtaBanner />
       <Footer />
       <TechFlowAIChatbot />
     </div>
