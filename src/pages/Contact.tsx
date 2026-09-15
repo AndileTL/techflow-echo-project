@@ -43,9 +43,3 @@ const ContactPage = () => (
 );
 
 export default ContactPage;
-
-    <Footer />
-  </div>
-);
-
-export default ContactPage;
